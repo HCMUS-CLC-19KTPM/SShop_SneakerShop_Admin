@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop_Admin">
         <activity
+            android:name=".Statistic.StatisticActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Auth.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Auth.SignInActivity"
+            android:exported="true" />
+        <activity
             android:name=".Order.OrderDetailActivity"
             android:exported="true" />
         <activity
