@@ -19,7 +19,7 @@ class AccountDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_account_detail)
+        setContentView(R.layout.activity_account_detail)
 
         username = findViewById(R.id.admin_account_detail_textview_username_2)
         address = findViewById(R.id.admin_account_detail_textview_address)

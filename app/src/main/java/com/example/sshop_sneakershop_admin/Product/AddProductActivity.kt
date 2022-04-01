@@ -7,6 +7,6 @@ import com.example.sshop_sneakershop_admin.R
 class AddProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_add_product);
+        setContentView(R.layout.activity_add_product);
     }
 }

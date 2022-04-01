@@ -11,7 +11,7 @@ class ProductListAcitivity : AppCompatActivity() {
     lateinit var products: ArrayList<Product>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_product_list)
+        setContentView(R.layout.activity_product_list)
 
         val productRecyclerView = findViewById<RecyclerView>(R.id.admin_product_list_recycler_view)
 

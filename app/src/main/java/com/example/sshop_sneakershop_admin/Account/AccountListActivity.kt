@@ -12,7 +12,7 @@ class AccountListActivity : AppCompatActivity() {
     private lateinit var accounts : ArrayList<Account>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_account_list)
+        setContentView(R.layout.activity_account_list)
 
         val accountRecyclerView = findViewById<RecyclerView>(R.id.admin_account_list_recycler_view)
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/admin_account_detail_coordinator_layout"
+        android:id="@+id/account_detail_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/admin_account_detail_nested_scroll_view"
+            android:id="@+id/account_detail_nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -29,7 +29,7 @@
             <!-- Scrollable content -->
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/admin_account_detail_toolbar"
+                android:id="@+id/account_detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
