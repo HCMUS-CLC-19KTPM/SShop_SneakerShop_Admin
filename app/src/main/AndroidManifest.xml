@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sshop_sneakershop_admin">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SShop_SneakerShop_Admin">
+        <activity
+            android:name=".Product.AddProductActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Product.ProductDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Product.ProductListAcitivity"
+            android:exported="true" />
+        <activity
+            android:name=".Account.AccountDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Account.AccountListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

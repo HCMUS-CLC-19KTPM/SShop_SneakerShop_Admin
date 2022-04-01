@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SShop_SneakerShop</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type1">Plimsoll</string>
+    <string name="type2">High-Top</string>
+    <string name="type3">Athletic</string>
+    <string name="type4">Slip-on</string>
+    <string name="type5">Authentic</string>
+    <string name="type6">Leather</string>
+    <string name="type7">Canvas</string>
+    <string name="type8">Synthetic</string>s
+    <string name="autoName">Grand Court</string>
+    <string name="autoPrice">$83.03</string>
+    <string name="autoCategory">Category</string>
+    <string name="autoProfile">Profile</string>
+    <string name="autoEditProfile">Edit Profile</string>
+    <string name="intro">©2022 G007 VN, Inc. All rights reserved.</string>
+    <string name="result">Result</string>
+</resources>
