@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop.checkout.AccountAdapter
+import com.example.sshop_sneakershop_admin.Account.Views.AccountAdapter
 import com.example.sshop_sneakershop_admin.R
 
 
