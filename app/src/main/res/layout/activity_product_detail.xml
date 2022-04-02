@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="SpeakableTextPresentCheck">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/productSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Size"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_description_content" />
+
+        <TextView
+            android:id="@+id/productDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Description"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_textview_rating" />
+
+        <ImageView
+            android:id="@+id/product_detail_imageview"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/shoe_detail" />
+
+        <TextView
+            android:id="@+id/product_detail_textview_picture_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="New arrival"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/product_detail_textview_category_tag"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/product_detail_textview_category_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="Category"
+            app:layout_constraintBottom_toBottomOf="@+id/product_detail_imageview"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/product_detail_edittext_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Product name"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_imageview" />
+
+        <TextView
+            android:id="@+id/product_detail_textview_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="$20.22"
+            android:textColor="@color/primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/product_detail_edittext_product_name"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <EditText
+            android:id="@+id/product_detail_edittext_product_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="$21.00"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/green"
+            android:clickable="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_product_name" />
+
+        <TextView
+            android:id="@+id/product_detail_textview_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="3.00/5.00"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="@+id/button" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintStart_toStartOf="@+id/button"
+            app:srcCompat="@drawable/ic_baseline_star_24" />
+
+        <EditText
+            android:id="@+id/product_detail_edittext_description_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="This high-heeled lace-up shoe is made from dark blue and white zebra-stripe print fabric.  It has a rounded appearance.  It is accented with beads and blue feathers."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productSize">
+
+            <RadioButton
+                android:id="@+id/size1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="US 7"
+                app:layout_constraintEnd_toStartOf="@+id/radioButton2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/size2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="US 8"
+                app:layout_constraintEnd_toStartOf="@+id/radioButton2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/size3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="US 9"
+                app:layout_constraintEnd_toStartOf="@+id/radioButton2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/size4"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="US 10"
+                app:layout_constraintEnd_toStartOf="@+id/radioButton2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/productInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="More info"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <EditText
+            android:id="@+id/product_detail_edittext_info_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="The White Nike Air 7000 is a lightweight yet supportive running shoe that will last for years. Shop now.
+\nBuy the White Nike Air 7000. This is a lightweight yet support running shoe that will last for years.
+\nThe White Nike Air 7000 is a lightweight yet supportive running shoe that will last for years. Rated 4.8/5 by our shoppers. Shop now."
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productInfo" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="191dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/productSize">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exchange values"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt1"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="US"
+                        android:textStyle="bold"
+                        android:background="@color/primary"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt2"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="UK"
+                        android:textStyle="bold"
+                        android:background="@color/primary"
+                        android:textColor="@color/white"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/txt3"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="EU"
+                        android:textStyle="bold"
+                        android:background="@color/primary"
+                        android:textColor="@color/white"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/txt4"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="JP"
+                        android:textStyle="bold"
+                        android:background="@color/primary"
+                        android:textColor="@color/white"
+                        android:textAlignment="center" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="38"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="24"
+                        android:textAlignment="center" />
+                </TableRow>
+
+                <TableRow
+                    android:background="@color/faded_orange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="6"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="39"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="25"
+                        android:textAlignment="center" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="40"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="26"
+                        android:textAlignment="center" />
+                </TableRow>
+
+                <TableRow
+                    android:background="@color/faded_orange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="41"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="27"
+                        android:textAlignment="center" />
+                </TableRow>
+
+            </TableLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/product_detail_imageview_edit_pencil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_baseline_mode_edit_outline_24"
+            app:layout_constraintBottom_toBottomOf="@+id/product_detail_edittext_product_name"
+            app:layout_constraintStart_toEndOf="@+id/product_detail_edittext_product_name"
+            app:layout_constraintTop_toTopOf="@+id/product_detail_edittext_product_name"
+            android:background="@drawable/image_view_border"/>
+
+
+        <Button
+            android:id="@+id/product_detail_button_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/primary"
+            android:text="Submit Changes"
+            android:enabled="false"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:icon ="@drawable/ic_baseline_file_upload_24"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_detail_edittext_info_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
