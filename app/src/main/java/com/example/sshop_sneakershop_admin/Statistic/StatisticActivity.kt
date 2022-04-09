@@ -3,6 +3,8 @@ package com.example.sshop_sneakershop_admin.Statistic
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop_admin.Product.Product
@@ -13,15 +15,24 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigationrail.NavigationRailMenuView
+import com.google.android.material.navigationrail.NavigationRailView
 
 class StatisticActivity : AppCompatActivity() {
 
-    lateinit var lineList: ArrayList<Entry>
-    lateinit var lineDataSet: LineDataSet
-    lateinit var lineData: LineData
-    lateinit var products: ArrayList<Product>
-    var line_chart: LineChart? = null
-    var productRecyclerView: RecyclerView? = null
+    private lateinit var lineList: ArrayList<Entry>
+    private lateinit var lineDataSet: LineDataSet
+    private lateinit var lineData: LineData
+    private lateinit var products: ArrayList<Product>
+    private var line_chart: LineChart? = null
+    private var productRecyclerView: RecyclerView? = null
+
+    private lateinit var topAppBar: MaterialToolbar
+    private lateinit var navigationRail: NavigationRailView
+    private var isExpanded: Boolean  = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +40,51 @@ class StatisticActivity : AppCompatActivity() {
         line_chart = findViewById(R.id.statistic_line_chart)
         productRecyclerView = findViewById(R.id.statistic_recycler_view)
 
+        topAppBar = findViewById(R.id.statistic_list_toolbar)
+        navigationRail = findViewById(R.id.statistic_navigationRail)
+
+        navigationRail.visibility = View.GONE
+
 
         lineChartSetting()
         top10ProductSetting()
+
+        topAppBar.setNavigationOnClickListener {
+            // Handle navigation icon press
+            Toast.makeText(this, "Back pressed", Toast.LENGTH_SHORT).show()
+            if (isExpanded){
+                topAppBar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
+                navigationRail.visibility = View.GONE
+                isExpanded = false
+            }
+            else{
+                topAppBar.setNavigationIcon(R.drawable.ic_baseline_close_24)
+                navigationRail.visibility = View.VISIBLE
+                isExpanded = true
+            }
+        }
+
+        navigationRail.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.home -> {
+                    // Respond to navigation item 1 reselection
+                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.manage_accounts -> {
+                    // Respond to navigation item 2 reselection
+                    Toast.makeText(this, "Manage Accounts", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.manage_products->{
+                    Toast.makeText(this, "Manage Products", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
+
+
     }
     fun lineChartSetting(){
         lineList = ArrayList()

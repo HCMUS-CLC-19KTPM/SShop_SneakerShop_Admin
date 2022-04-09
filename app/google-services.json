@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "project_number": "767828310366",
+    "project_id": "sshopsneakershop",
+    "storage_bucket": "sshopsneakershop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767828310366:android:25f078a57f14d18e73b7cf",
+        "android_client_info": {
+          "package_name": "com.example.sshop_sneakershop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767828310366-684aainp0h5dmnmret0ckrv7gdpskfke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sshop_sneakershop",
+            "certificate_hash": "a030f10a5335154b25aa08d64593312a4803731a"
+          }
+        },
+        {
+          "client_id": "767828310366-6gf7e7s1nabcnjrk3a22iqrq0ktku9tb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sshop_sneakershop",
+            "certificate_hash": "e948f7535c239a02c4072d5c7bf87f7d64d1b457"
+          }
+        },
+        {
+          "client_id": "767828310366-r9l4jpp97emf1ikb8dvk6e9jlblc822o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sshop_sneakershop",
+            "certificate_hash": "e05b9445eeb810ed4175766fc2d8933660a10a18"
+          }
+        },
+        {
+          "client_id": "767828310366-gu4c8odgqk2c015gvrhhpe286ihfdkn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuGHbSzhmwydZi860A1TZMjPUIF5Bfzko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767828310366-gu4c8odgqk2c015gvrhhpe286ihfdkn0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767828310366:android:c4d336278c48c89073b7cf",
+        "android_client_info": {
+          "package_name": "com.example.sshop_sneakershop_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767828310366-4kvn7nb4u038f66pgdssj1kulpgbqti9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sshop_sneakershop_admin",
+            "certificate_hash": "a030f10a5335154b25aa08d64593312a4803731a"
+          }
+        },
+        {
+          "client_id": "767828310366-gu4c8odgqk2c015gvrhhpe286ihfdkn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuGHbSzhmwydZi860A1TZMjPUIF5Bfzko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767828310366-gu4c8odgqk2c015gvrhhpe286ihfdkn0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

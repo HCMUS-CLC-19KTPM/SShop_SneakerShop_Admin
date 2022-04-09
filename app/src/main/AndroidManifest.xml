@@ -13,10 +13,7 @@
             android:name=".Statistic.StatisticActivity"
             android:exported="true" />
         <activity
-            android:name=".Auth.SignUpActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Auth.SignInActivity"
+            android:name=".Auth.views.SignInActivity"
             android:exported="true" />
         <activity
             android:name=".Order.OrderDetailActivity"
