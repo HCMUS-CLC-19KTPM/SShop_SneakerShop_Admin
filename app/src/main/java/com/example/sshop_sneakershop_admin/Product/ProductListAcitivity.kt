@@ -6,14 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop_admin.Product.Views.ProductAdapter
 import com.example.sshop_sneakershop_admin.R
+import com.google.android.material.appbar.MaterialToolbar
 
 class ProductListAcitivity : AppCompatActivity() {
     lateinit var products: ArrayList<Product>
+    private lateinit var topAppBar: MaterialToolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
 
         val productRecyclerView = findViewById<RecyclerView>(R.id.admin_product_list_recycler_view)
+        topAppBar = findViewById(R.id.admin_product_list_toolbar)
 
         val product = Product("123", 1000.0,"Nike Jordan", "jordan.jpg", "Long description", 10);
         products = listOf(
@@ -32,5 +36,8 @@ class ProductListAcitivity : AppCompatActivity() {
         productRecyclerView.adapter = adapter
         productRecyclerView.layoutManager = LinearLayoutManager(this) //GridLayoutManager
 
+        topAppBar.setNavigationOnClickListener{
+            finish()
+        }
     }
 }

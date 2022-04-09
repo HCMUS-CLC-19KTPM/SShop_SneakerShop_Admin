@@ -4,52 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/admin_account_list_coordinator_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:id="@+id/admin_account_list_coordinator_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-        </com.google.android.material.appbar.AppBarLayout>
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
 
-        <!-- Note: A RecyclerView can also be used -->
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/admin_account_list_nested_scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--        &lt;!&ndash; Note: A RecyclerView can also be used &ndash;&gt;-->
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:id="@+id/admin_account_list_nested_scroll_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
-            <!-- Scrollable content -->
+<!--            &lt;!&ndash; Scrollable content &ndash;&gt;-->
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/admin_account_list_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="84dp"
-                android:background="@color/primary"
-                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                app:title="Accounts Management"
-                app:titleTextColor="@color/white" />
-        </androidx.core.widget.NestedScrollView>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--            <com.google.android.material.appbar.MaterialToolbar-->
+<!--                android:id="@+id/admin_account_list_toolbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="84dp"-->
+<!--                android:background="@color/primary"-->
+<!--                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"-->
+<!--                app:title="Accounts Management"-->
+<!--                app:titleTextColor="@color/white" />-->
+<!--        </androidx.core.widget.NestedScrollView>-->
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/admin_account_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/admin_account_list_button_add_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_account_list_coordinator_layout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/admin_account_list_button_add_account"

@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop_admin.Statistic
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +8,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sshop_sneakershop_admin.Account.AccountListActivity
 import com.example.sshop_sneakershop_admin.Product.Product
+import com.example.sshop_sneakershop_admin.Product.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.Product.Views.ProductAdapter
 import com.example.sshop_sneakershop_admin.R
 import com.github.mikephil.charting.charts.LineChart
@@ -73,11 +76,15 @@ class StatisticActivity : AppCompatActivity() {
                 }
                 R.id.manage_accounts -> {
                     // Respond to navigation item 2 reselection
-                    Toast.makeText(this, "Manage Accounts", Toast.LENGTH_SHORT).show()
+                    Intent(this, AccountListActivity::class.java).also {
+                        startActivity(it)
+                    }
                     true
                 }
                 R.id.manage_products->{
-                    Toast.makeText(this, "Manage Products", Toast.LENGTH_SHORT).show()
+                    Intent(this, ProductListAcitivity::class.java).also {
+                        startActivity(it)
+                    }
                     true
                 }
                 else -> false
