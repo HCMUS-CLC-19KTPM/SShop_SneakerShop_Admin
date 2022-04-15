@@ -3,17 +3,10 @@ package com.example.sshop_sneakershop_admin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
-import com.example.sshop_sneakershop_admin.Account.AccountListActivity
+import com.example.sshop_sneakershop_admin.Account.Views.AccountListActivity
 import com.example.sshop_sneakershop_admin.Product.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.navigationrail.NavigationRailView
 
 class MainActivity : AppCompatActivity() {
 

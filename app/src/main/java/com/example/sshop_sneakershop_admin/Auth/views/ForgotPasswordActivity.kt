@@ -12,7 +12,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.forgotPasswordInputEmail.setText("admin@gmail.com")
+        binding.forgotPasswordInputEmail.setText("sshopsneaker@gmail.com")
 
         binding.forgotButtonBackToSignin.setOnClickListener {
             finish()

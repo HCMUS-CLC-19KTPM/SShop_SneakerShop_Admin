@@ -34,10 +34,10 @@
             android:name=".Product.ProductListAcitivity"
             android:exported="true" />
         <activity
-            android:name=".Account.AccountDetailActivity"
+            android:name=".Account.Views.AccountDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Account.AccountListActivity"
+            android:name=".Account.Views.AccountListActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

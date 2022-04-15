@@ -1,16 +1,11 @@
-package com.example.sshop_sneakershop_admin.Account
+package com.example.sshop_sneakershop_admin.Account.Views
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop_admin.Account.Views.AccountAdapter
+import com.example.sshop_sneakershop_admin.Account.models.Account
 import com.example.sshop_sneakershop_admin.R
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 
@@ -30,13 +25,15 @@ class AccountListActivity : AppCompatActivity() {
         topAppBar = findViewById(R.id.account_list_toolbar)
 
         val account = Account(
-            "1234nsnnnd32312",
+            "1",
             "Nguyễn Văn A",
-            "123456789",
-            "dsaj@#mdsa",
-            true,
-            "nguyenvana123@gmail.com"
-        )
+            "0123456789",
+            "absds",
+            "absds",
+            "absds",
+            "absds",
+            "absds",
+        true)
         accounts = listOf(
             account,
             account,

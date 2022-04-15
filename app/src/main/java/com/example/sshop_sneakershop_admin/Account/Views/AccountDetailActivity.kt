@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop_admin.Account
+package com.example.sshop_sneakershop_admin.Account.Views
 
 import android.os.Bundle
 import android.widget.*

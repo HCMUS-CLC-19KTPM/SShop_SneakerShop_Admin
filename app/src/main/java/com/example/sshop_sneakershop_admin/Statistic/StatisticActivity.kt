@@ -1,6 +1,5 @@
 package com.example.sshop_sneakershop_admin.Statistic
 
-import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,20 +7,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop_admin.Account.AccountListActivity
 import com.example.sshop_sneakershop_admin.Product.Product
-import com.example.sshop_sneakershop_admin.Product.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.Product.Views.ProductAdapter
 import com.example.sshop_sneakershop_admin.R
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.utils.ColorTemplate
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.navigationrail.NavigationRailMenuView
 import com.google.android.material.navigationrail.NavigationRailView
 
 class StatisticActivity : AppCompatActivity() {

@@ -10,17 +10,15 @@ import kotlinx.coroutines.launch
 class AuthController(
     private var view: IAuthView
 ) : IAuthController {
-    private lateinit var authService: AuthService
+    private var authService: AuthService = AuthService()
 
-    init {
-        authService = AuthService()
-    }
     /**
      * sign in with email and password
      */
     override fun onSignIn(email: String, password: String) {
         CoroutineScope(Dispatchers.Main).launch {
             var result = authService.signIn(email, password)
+
             if (result) {
                 view.onLoginSuccess("Login Success")
             } else {
@@ -29,15 +27,25 @@ class AuthController(
         }
     }
 
-    override fun onSiginInWithGoogle(credential: AuthCredential) {
-        TODO("Not yet implemented")
+    override fun onSignInWithGoogle(credential: AuthCredential) {
+        CoroutineScope(Dispatchers.Main).launch {
+            var result = authService.signInWithGoogle(credential)
+
+            if (result) {
+                view.onLoginSuccess("Login Success")
+            } else {
+                view.onLoginFailed("Login failed. Invalid email or password or account not activated please check your email")
+            }
+        }
     }
+
+
 
     override fun onForgotPassword(email: String) {
         TODO("Not yet implemented")
     }
 
     override fun onSignOut() {
-        TODO("Not yet implemented")
+        authService.signOut()
     }
 }

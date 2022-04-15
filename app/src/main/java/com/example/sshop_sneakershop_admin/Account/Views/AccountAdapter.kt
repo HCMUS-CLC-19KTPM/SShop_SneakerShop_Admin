@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop_admin.Account.Account
+import com.example.sshop_sneakershop_admin.Account.models.Account
 import com.example.sshop_sneakershop_admin.R
 
 class AccountAdapter(private val accounts:List<Account>): RecyclerView.Adapter<AccountAdapter.ViewHolder>() {
