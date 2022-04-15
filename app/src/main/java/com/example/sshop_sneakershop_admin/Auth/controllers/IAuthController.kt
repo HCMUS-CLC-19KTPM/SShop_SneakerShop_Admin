@@ -6,5 +6,6 @@ import com.google.firebase.auth.AuthCredential
 interface IAuthController {
     fun onSignIn(email: String, password: String)
     fun onSiginInWithGoogle(credential: AuthCredential)
+    fun onForgotPassword(email: String)
     fun onSignOut()
 }

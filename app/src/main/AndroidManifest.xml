@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop_Admin">
         <activity
+            android:name=".Auth.views.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".Statistic.StatisticActivity"
             android:exported="true" />
         <activity

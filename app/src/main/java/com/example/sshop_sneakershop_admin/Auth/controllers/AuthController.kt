@@ -33,6 +33,10 @@ class AuthController(
         TODO("Not yet implemented")
     }
 
+    override fun onForgotPassword(email: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onSignOut() {
         TODO("Not yet implemented")
     }
