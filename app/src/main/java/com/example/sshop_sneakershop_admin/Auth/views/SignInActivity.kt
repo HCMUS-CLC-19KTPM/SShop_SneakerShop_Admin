@@ -2,6 +2,8 @@ package com.example.sshop_sneakershop_admin.Auth.views
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -88,29 +90,19 @@ class SignInActivity : AppCompatActivity(), IAuthView {
     }
 
     override fun onLoginSuccess(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     override fun onLoginFailed(message: String) {
-//        AlertDialog.Builder(this)
-//            .setTitle("Login Failed")
-//            .setMessage(message)
-//            .setPositiveButton("OK") { dialog, _ ->
-//                dialog.dismiss()
-//            }
-//            .show()
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Login Failed")
-        val customLayout: View = layoutInflater.inflate(R.layout.custom_alert_dialog, null)
-        builder.setView(customLayout)
-        customLayout.findViewById<TextView>(R.id.customDialogMessage).text = message
-        builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
-            dialog.dismiss()
-        })
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+        AlertDialog.Builder(this)
+            .setTitle("Login Failed")
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

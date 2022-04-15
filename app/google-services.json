@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "767828310366-kqobs59n43kmeve3cnpm50u6e92b44uu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sshop_sneakershop",
+            "certificate_hash": "91954dc42fa0d1a78636d4d52c57ac419fa1f740"
+          }
+        },
+        {
           "client_id": "767828310366-r9l4jpp97emf1ikb8dvk6e9jlblc822o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

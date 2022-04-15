@@ -28,12 +28,12 @@ class AuthService {
     suspend fun signInWithGoogle(credential: AuthCredential): Boolean{
         try{
             auth.signInWithCredential(credential).await()
-
+//            accountModel.getUsers()
             val email: String? = auth.currentUser!!.email
             if (email != "sshopsneaker@gmail.com"){
                 return false
             }
-            if(accountModel.getUser(email!!) == null){
+            if(accountModel.getUser(email.toString()) == null){
                 accountModel.insertUser(Account(email))
             }
             Log.d("AuthService", "signInWithCredential:success")
