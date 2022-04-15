@@ -67,29 +67,29 @@ class StatisticActivity : AppCompatActivity() {
             }
         }
 
-        navigationRail.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.home -> {
-                    // Respond to navigation item 1 reselection
-                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.manage_accounts -> {
-                    // Respond to navigation item 2 reselection
-                    Intent(this, AccountListActivity::class.java).also {
-                        startActivity(it)
-                    }
-                    true
-                }
-                R.id.manage_products->{
-                    Intent(this, ProductListAcitivity::class.java).also {
-                        startActivity(it)
-                    }
-                    true
-                }
-                else -> false
-            }
-        }
+//        navigationRail.setOnItemSelectedListener { item ->
+//            when(item.itemId) {
+//                R.id.home -> {
+//                    // Respond to navigation item 1 reselection
+//                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
+//                    true
+//                }
+//                R.id.manage_accounts -> {
+//                    // Respond to navigation item 2 reselection
+//                    Intent(this, AccountListActivity::class.java).also {
+//                        startActivity(it)
+//                    }
+//                    true
+//                }
+//                R.id.manage_products->{
+//                    Intent(this, ProductListAcitivity::class.java).also {
+//                        startActivity(it)
+//                    }
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
 
 
     }

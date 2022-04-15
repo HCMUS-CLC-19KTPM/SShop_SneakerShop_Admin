@@ -16,4 +16,9 @@
     <string name="autoEditProfile">Edit Profile</string>
     <string name="intro">©2022 G007 VN, Inc. All rights reserved.</string>
     <string name="result">Result</string>
+    <string name="closeNavDrawer">Close Navigation Drawer</string>
+    <string name="openNavDrawer">Open Navigation Drawer</string>
+    <string name="nav_header">SShop - Sneaker Shop</string>
+    <string name="nav_author">Group007</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>
