@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop_admin.Account.views.AccountListActivity
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
-import com.example.sshop_sneakershop_admin.Product.Product
-import com.example.sshop_sneakershop_admin.Product.ProductDetailActivity
-import com.example.sshop_sneakershop_admin.Product.ProductListAcitivity
+import com.example.sshop_sneakershop_admin.Order.OrderListActivity
+import com.example.sshop_sneakershop_admin.Product.models.Product
+import com.example.sshop_sneakershop_admin.Product.Views.ProductDetailActivity
+import com.example.sshop_sneakershop_admin.Product.Views.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.Product.Views.ProductAdapter
 import com.example.sshop_sneakershop_admin.R
-import com.example.sshop_sneakershop_admin.Statistic.StatisticActivity
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
 import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding
 import com.github.mikephil.charting.data.Entry
@@ -78,6 +78,10 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, ProductListAcitivity::class.java)
                     startActivity(intent)
                 }
+                R.id.nav_order -> {
+                    val intent = Intent(this, OrderListActivity::class.java)
+                    startActivity(intent)
+                }
                 R.id.nav_account -> {
                     val intent = Intent(this, AccountListActivity::class.java)
                     startActivity(intent)
@@ -122,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         lineDataSet.setDrawFilled(true)
     }
     fun top10ProductSetting(binding: ActivityStatisticBinding){
-        val product = Product("123", 1000.0,"Nike Jordan", "jordan.jpg", "Long description", 10);
+        val product = Product();
         products = listOf(
             product,
             product,
@@ -139,11 +143,10 @@ class MainActivity : AppCompatActivity() {
         binding.statisticRecyclerView!!.adapter = adapter
         binding.statisticRecyclerView!!.layoutManager = LinearLayoutManager(this) //GridLayout
 
-//        adapter.onItemClick = { product ->
-//            val intent = Intent(this, ProductDetailActivity::class.java)
-//            intent.putExtra("product", product)
-//            startActivity(intent)
-//        }
+        adapter.onItemClick = { product ->
+            val intent = Intent(this, ProductDetailActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

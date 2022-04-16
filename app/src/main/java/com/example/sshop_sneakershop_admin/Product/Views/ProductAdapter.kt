@@ -6,17 +6,27 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop_admin.Product.Product
+import com.example.sshop_sneakershop_admin.Product.models.Product
 import com.example.sshop_sneakershop_admin.R
 
 
-class ProductAdapter(private val products:List<Product>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private val products:List<Product>):
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+
+    var onItemClick: ((Product) -> Unit)? = null
+
     inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
         val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView
         val priceTextView = listItemView.findViewById(R.id.product_textview_price) as TextView
         val quantityTextView = listItemView.findViewById(R.id.product_textview_quantity) as TextView
         val descriptonTextView = listItemView.findViewById(R.id.product_textview_description) as TextView
         val imageView = listItemView.findViewById(R.id.product_image) as ImageView
+
+        init {
+            listItemView.setOnClickListener{
+                onItemClick?.invoke(products[adapterPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -29,6 +29,8 @@ class SignInActivity : AppCompatActivity(), IAuthView {
 
         controller = AuthController(this)
 
+        binding.signinInputEmail.setText("sshopsneaker@gmail.com")
+        binding.signinInputPassword.setText("hcmus1234")
 
         binding.signinTextviewForgotPassword.setOnClickListener{
             val intent = Intent(this, ForgotPasswordActivity::class.java)

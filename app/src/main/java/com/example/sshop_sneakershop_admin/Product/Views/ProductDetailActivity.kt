@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop_admin.Product
+package com.example.sshop_sneakershop_admin.Product.Views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

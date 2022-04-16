@@ -28,13 +28,13 @@
             android:name=".Order.OrderListActivity"
             android:exported="true" />
         <activity
-            android:name=".Product.AddProductActivity"
+            android:name=".Product.Views.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".Product.ProductDetailActivity"
+            android:name=".Product.Views.ProductDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Product.ProductListAcitivity"
+            android:name=".Product.Views.ProductListAcitivity"
             android:exported="true" />
         <activity
             android:name=".Account.views.AccountDetailActivity"

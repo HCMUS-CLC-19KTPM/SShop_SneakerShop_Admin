@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/admin_product_list_coordinator_layout"
+        android:id="@+id/product_list_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/admin_product_list_nested_scroll_view"
+            android:id="@+id/product_list_nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -29,7 +29,7 @@
             <!-- Scrollable content -->
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/admin_product_list_toolbar"
+                android:id="@+id/product_list_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
@@ -41,12 +41,12 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <Spinner
-        android:id="@+id/admin_product_list_spinner_category"
+        android:id="@+id/product_list_spinner_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_product_list_coordinator_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/product_list_coordinator_layout" />
 
     <TextView
         android:id="@+id/textView2"
@@ -59,23 +59,23 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_product_list_coordinator_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/product_list_coordinator_layout" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/admin_product_list_recycler_view"
+        android:id="@+id/product_list_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/admin_product_list_button_add_product"
+        app:layout_constraintBottom_toTopOf="@+id/product_list_button_add_product"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/admin_product_list_button_add_product"
+        android:id="@+id/product_list_button_add_product"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
