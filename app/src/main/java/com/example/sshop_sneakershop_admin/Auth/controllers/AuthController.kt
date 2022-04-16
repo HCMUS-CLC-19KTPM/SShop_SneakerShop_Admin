@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AuthController(
-    private var view: IAuthView
+    private var view: IAuthView,
 ) : IAuthController {
     private var authService: AuthService = AuthService()
 
@@ -39,10 +39,16 @@ class AuthController(
         }
     }
 
-
-
     override fun onForgotPassword(email: String) {
-        TODO("Not yet implemented")
+        CoroutineScope(Dispatchers.Main).launch {
+            var result = authService.sendResetPasswordEmail(email)
+
+            if (result) {
+                view.onForgotPasswordSuccess("Reset password email sent. Redirecting to login page")
+            } else {
+                view.onForgotPasswordFailed("Email not found. Please check your email again")
+            }
+        }
     }
 
     override fun onSignOut() {

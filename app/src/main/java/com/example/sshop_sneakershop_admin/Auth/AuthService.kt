@@ -44,6 +44,17 @@ class AuthService {
         }
         return false
     }
+
+    suspend fun sendResetPasswordEmail(email: String): Boolean{
+        try{
+            auth.sendPasswordResetEmail(email).await()
+            return true
+        }catch(e: Exception){
+            Log.e("AuthService", e.toString())
+        }
+        return false
+    }
+
     fun signOut(){
         auth.signOut()
     }

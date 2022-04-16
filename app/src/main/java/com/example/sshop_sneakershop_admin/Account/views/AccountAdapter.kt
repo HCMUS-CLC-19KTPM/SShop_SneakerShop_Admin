@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop_admin.Account.Views
+package com.example.sshop_sneakershop_admin.Account.views
 
 import android.view.LayoutInflater
 import android.view.View

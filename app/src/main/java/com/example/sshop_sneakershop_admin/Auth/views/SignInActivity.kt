@@ -1,21 +1,12 @@
 package com.example.sshop_sneakershop_admin.Auth.views
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.sshop_sneakershop_admin.Account.models.Account
 import com.example.sshop_sneakershop_admin.Auth.controllers.AuthController
-import com.example.sshop_sneakershop_admin.MainActivity
+import com.example.sshop_sneakershop_admin.Home.views.MainActivity
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,12 +14,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 class SignInActivity : AppCompatActivity(), IAuthView {
 
@@ -104,5 +89,13 @@ class SignInActivity : AppCompatActivity(), IAuthView {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    override fun onForgotPasswordSuccess(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onForgotPasswordFailed(message: String) {
+        TODO("Not yet implemented")
     }
 }

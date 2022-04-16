@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop_Admin">
         <activity
+            android:name=".Statistic.views.StatisticActivity"
+            android:exported="false" />
+        <activity
             android:name=".Auth.views.ForgotPasswordActivity"
             android:exported="false" />
         <activity
@@ -34,13 +37,13 @@
             android:name=".Product.ProductListAcitivity"
             android:exported="true" />
         <activity
-            android:name=".Account.Views.AccountDetailActivity"
+            android:name=".Account.views.AccountDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Account.Views.AccountListActivity"
+            android:name=".Account.views.AccountListActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home.views.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

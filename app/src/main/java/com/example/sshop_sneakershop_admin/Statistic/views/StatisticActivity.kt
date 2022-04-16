@@ -14,8 +14,7 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.navigationrail.NavigationRailView
+
 
 class StatisticActivity : AppCompatActivity() {
 
@@ -26,9 +25,6 @@ class StatisticActivity : AppCompatActivity() {
     private var line_chart: LineChart? = null
     private var productRecyclerView: RecyclerView? = null
 
-    private lateinit var topAppBar: MaterialToolbar
-    private lateinit var navigationRail: NavigationRailView
-    private var isExpanded: Boolean  = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,55 +32,10 @@ class StatisticActivity : AppCompatActivity() {
         line_chart = findViewById(R.id.statistic_line_chart)
         productRecyclerView = findViewById(R.id.statistic_recycler_view)
 
-        topAppBar = findViewById(R.id.statistic_list_toolbar)
-        navigationRail = findViewById(R.id.statistic_navigationRail)
-
-        navigationRail.visibility = View.GONE
 
 
         lineChartSetting()
         top10ProductSetting()
-
-        topAppBar.setNavigationOnClickListener {
-            // Handle navigation icon press
-            Toast.makeText(this, "Back pressed", Toast.LENGTH_SHORT).show()
-            if (isExpanded){
-                topAppBar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
-                navigationRail.visibility = View.GONE
-                isExpanded = false
-            }
-            else{
-                topAppBar.setNavigationIcon(R.drawable.ic_baseline_close_24)
-                navigationRail.visibility = View.VISIBLE
-                isExpanded = true
-            }
-        }
-
-//        navigationRail.setOnItemSelectedListener { item ->
-//            when(item.itemId) {
-//                R.id.home -> {
-//                    // Respond to navigation item 1 reselection
-//                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-//                    true
-//                }
-//                R.id.manage_accounts -> {
-//                    // Respond to navigation item 2 reselection
-//                    Intent(this, AccountListActivity::class.java).also {
-//                        startActivity(it)
-//                    }
-//                    true
-//                }
-//                R.id.manage_products->{
-//                    Intent(this, ProductListAcitivity::class.java).also {
-//                        startActivity(it)
-//                    }
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-
-
     }
     fun lineChartSetting(){
         lineList = ArrayList()
