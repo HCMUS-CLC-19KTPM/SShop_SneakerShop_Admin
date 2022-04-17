@@ -126,27 +126,6 @@ class MainActivity : AppCompatActivity() {
         lineDataSet.setDrawFilled(true)
     }
     fun top10ProductSetting(binding: ActivityStatisticBinding){
-        val product = Product();
-        products = listOf(
-            product,
-            product,
-            product,
-            product,
-            product,
-            product,
-            product,
-            product
-        ).toCollection(ArrayList())
-
-        val adapter = ProductAdapter(products)
-
-        binding.statisticRecyclerView!!.adapter = adapter
-        binding.statisticRecyclerView!!.layoutManager = LinearLayoutManager(this) //GridLayout
-
-        adapter.onItemClick = { product ->
-            val intent = Intent(this, ProductDetailActivity::class.java)
-            startActivity(intent)
-        }
 
 
     }

@@ -53,22 +53,6 @@ class StatisticActivity : AppCompatActivity() {
         lineDataSet.setDrawFilled(true)
     }
     fun top10ProductSetting(){
-        val product = Product();
-        products = listOf(
-            product,
-            product,
-            product,
-            product,
-            product,
-            product,
-            product,
-            product
-        ).toCollection(ArrayList())
-
-        val adapter = ProductAdapter(products)
-
-        productRecyclerView!!.adapter = adapter
-        productRecyclerView!!.layoutManager = LinearLayoutManager(this) //GridLa
     }
 
 }
