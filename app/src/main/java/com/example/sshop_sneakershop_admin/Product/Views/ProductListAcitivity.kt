@@ -5,10 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
 import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
@@ -27,6 +29,8 @@ class ProductListAcitivity : AppCompatActivity(),
     private lateinit var binding: ActivityProductListBinding
     private lateinit var productController: ProductController
     private lateinit var categoryAdapter: ArrayAdapter<String>
+    private lateinit var productAdapter: ProductAdapter
+    private var fullProductList: ArrayList<Product> = ArrayList()
 
     override fun onStart() {
         super.onStart()
@@ -46,11 +50,18 @@ class ProductListAcitivity : AppCompatActivity(),
         setContentView(binding.root)
 
         val productListActivity = this
-        binding.productListRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-            adapter = ProductAdapter(products, productListActivity)
-        }
+
+//        binding.productListRecyclerView.apply {
+//            layoutManager =
+//                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+////            adapter = ProductAdapter(products, products ,productListActivity)
+//            adapter = tempAdapter
+//        }
+        binding.productListRecyclerView.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+        productAdapter = ProductAdapter(products, productListActivity, fullProductList)
+        binding.productListRecyclerView.adapter = productAdapter
+
+
         productController.onGetAllProducts()
 
         categoryAdapter = ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category))
@@ -58,7 +69,7 @@ class ProductListAcitivity : AppCompatActivity(),
         binding.productListSpinnerCategory.setSelection(0)
 
         binding.productListSpinnerCategory.onItemSelectedListener = object :
-            android.widget.AdapterView.OnItemSelectedListener {
+            AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
@@ -72,13 +83,7 @@ class ProductListAcitivity : AppCompatActivity(),
                 productController.onGetProductByCategory(categoryAdapter.getItem(position).toString())
             }
         }
-
-
-
-
-
-
-
+        setSupportActionBar(binding.productListToolbar)
         binding.productListToolbar.setNavigationOnClickListener {
             finish()
         }
@@ -87,7 +92,25 @@ class ProductListAcitivity : AppCompatActivity(),
             startActivity(intent)
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu):Boolean {
+        menuInflater.inflate(R.menu.top_app_bar_with_search, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        Log.i("searchView", "go here 1")
+        val searchView = searchItem.actionView as SearchView
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Log.i("searchView", "go here 2")
+                productAdapter.getFilter().filter(newText)
+                return false
+            }
+        })
+        return true
+    }
     @SuppressLint("NotifyDataSetChanged")
     private fun getAllProducts() {
         GlobalScope.launch(Dispatchers.Main) {
@@ -100,6 +123,7 @@ class ProductListAcitivity : AppCompatActivity(),
     @SuppressLint("NotifyDataSetChanged")
     override fun onShowAllProducts(products: ArrayList<Product>) {
         this.products.addAll(products)
+        this.fullProductList.addAll(products)
         binding.productListRecyclerView.adapter?.notifyDataSetChanged()
         Log.i("result view", "${products.size}")
     }
@@ -108,6 +132,8 @@ class ProductListAcitivity : AppCompatActivity(),
     override fun onShowProductsByCategory(products: ArrayList<Product>) {
         this.products.clear()
         this.products.addAll(products)
+        this.fullProductList.clear()
+        this.fullProductList.addAll(products)
         binding.productListRecyclerView.adapter?.notifyDataSetChanged()
     }
 

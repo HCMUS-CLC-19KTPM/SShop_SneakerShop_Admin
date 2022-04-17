@@ -1,22 +1,21 @@
 package com.example.sshop_sneakershop_admin.Product.Views
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListView
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop_admin.Product.models.Product
-import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ProductListItemBinding
 
 
 class ProductAdapter(
     private val products: ArrayList<Product>,
-    private val clickListener: ItemClickListener
-) : RecyclerView.Adapter<CardViewHolder>()
+    private val clickListener: ItemClickListener,
+    val fullProductList: ArrayList<Product>
+) : RecyclerView.Adapter<CardViewHolder>(), Filterable
 {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val from = LayoutInflater.from(parent.context)
         val binding = ProductListItemBinding.inflate(from, parent, false)
@@ -30,46 +29,33 @@ class ProductAdapter(
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.bindItem(products[position])
     }
+
+    override fun getFilter(): Filter {
+        return productFilter
+    }
+    private val productFilter: Filter = object : Filter() {
+        override fun performFiltering(constraint: CharSequence?): FilterResults? {
+            val filteredList: ArrayList<Product> = ArrayList()
+            if (constraint == null || constraint.isEmpty()) {
+                filteredList.addAll(fullProductList)
+            } else {
+                val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
+                for (item in fullProductList) {
+                    if (item.name.toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item)
+                    }
+                }
+            }
+            val results = FilterResults()
+            Log.i("productAdapter", "${fullProductList.size}")
+            results.values = filteredList
+            return results
+        }
+
+        override fun publishResults(constraint: CharSequence?, results: FilterResults) {
+            products.clear()
+            products.addAll(results.values as ArrayList<Product>)
+            notifyDataSetChanged()
+        }
+    }
 }
-
-
-//
-//class ProductAdapter(private val products:List<Product>):
-//    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
-//
-//    var onItemClick: ((Product) -> Unit)? = null
-//
-//    inner class ViewHolder(listItemView: View): RecyclerView.ViewHolder(listItemView){
-//        val nameTextView = listItemView.findViewById(R.id.product_textview_name) as TextView
-//        val priceTextView = listItemView.findViewById(R.id.product_textview_price) as TextView
-//        val quantityTextView = listItemView.findViewById(R.id.product_textview_quantity) as TextView
-//        val descriptonTextView = listItemView.findViewById(R.id.product_textview_description) as TextView
-//        val imageView = listItemView.findViewById(R.id.product_image) as ImageView
-//
-//        init {
-//            listItemView.setOnClickListener{
-//                onItemClick?.invoke(products[adapterPosition])
-//            }
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        val context = parent.context
-//        val inflater = LayoutInflater.from(context)
-//        val productView = inflater.inflate(R.layout.product_list_item, parent, false)
-//        return ViewHolder(productView)
-//    }
-//
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val product = products[position]
-//        holder.nameTextView.text = product.name
-//        holder.priceTextView.text = product.price.toString()
-//        holder.quantityTextView.text = product.quantity.toString()
-//        holder.descriptonTextView.text = product.description
-//        holder.imageView.setImageResource(R.drawable.shoe)
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return products.size
-//    }
-//}
