@@ -14,15 +14,41 @@ class ProductController(private val view: IProductView) : IProductController {
         return productService.getAllProducts()
     }
 
+    override fun onGetAllProducts() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val products = productService.getAllProducts()
+            withContext(Dispatchers.Main){
+                view.onShowAllProducts(products)
+            }
+        }
+    }
+
     override suspend fun getProductById(id: String): Product {
         return productService.getProductById(id)
     }
+    override fun onGetProductById(id: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val product = productService.getProductById(id)
+            withContext(Dispatchers.Main){
+                view.onShowProductDetail(product)
+            }
+        }
+    }
 
     override suspend fun getProductsByCategory(category: String): ArrayList<Product> {
-        if (category === "All"){
+        if (category == "All"){
             return productService.getAllProducts()
         }
         return productService.getProductsByCategory(category)
+    }
+
+    override fun onGetProductByCategory(category: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val products = if (category == "All") productService.getAllProducts() else productService.getProductsByCategory(category)
+            withContext(Dispatchers.Main){
+                view.onShowProductsByCategory(products)
+            }
+        }
     }
 
     override fun createProduct(product: Product): Boolean {
@@ -37,32 +63,9 @@ class ProductController(private val view: IProductView) : IProductController {
         TODO("Not yet implemented")
     }
 
-    override fun onGetAllProducts() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val products = productService.getAllProducts()
-            withContext(Dispatchers.Main){
-                view.onShowAllProducts(products)
-            }
-        }
-    }
 
-    override fun onGetProductById(id: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            val product = productService.getProductById(id)
-            withContext(Dispatchers.Main){
-                view.onShowProductDetail(product)
-            }
-        }
-    }
 
-    override fun onGetProductByCategory(category: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            val products = if (category === "All") productService.getAllProducts() else productService.getProductsByCategory(category)
-            withContext(Dispatchers.Main){
-                view.onShowProductsByCategory(products)
-            }
-        }
-    }
+
 
 
 }

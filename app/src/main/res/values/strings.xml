@@ -21,4 +21,15 @@
     <string name="nav_header">SShop - Sneaker Shop</string>
     <string name="nav_author">Group007</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string-array name="category">
+        <item>All</item>
+        <item>Plimsoll</item>
+        <item>High-Top</item>
+        <item>Athletic</item>
+        <item>Slip-on</item>
+        <item>Authentic</item>
+        <item>Leather</item>
+        <item>Canvas</item>
+        <item>Synthetic</item>
+    </string-array>
 </resources>

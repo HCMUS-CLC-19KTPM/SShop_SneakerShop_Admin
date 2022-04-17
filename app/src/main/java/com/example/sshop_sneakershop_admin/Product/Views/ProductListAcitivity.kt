@@ -4,31 +4,29 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.view.MenuItem
-import android.widget.Toolbar
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
 import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
 import com.example.sshop_sneakershop_admin.Product.models.Product
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivityProductListBinding
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class ProductListAcitivity : AppCompatActivity(),
-    IProductView, ItemClickListener {
+    IProductView, ItemClickListener{
     private var products: ArrayList<Product> = ArrayList()
     private lateinit var binding: ActivityProductListBinding
     private lateinit var productController: ProductController
+    private lateinit var categoryAdapter: ArrayAdapter<String>
 
     override fun onStart() {
         super.onStart()
@@ -47,9 +45,6 @@ class ProductListAcitivity : AppCompatActivity(),
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        getAllProducts()
-//        productRecyclerView = findViewById<RecyclerView>(R.id.product_list_recycler_view)
-
         val productListActivity = this
         binding.productListRecyclerView.apply {
             layoutManager =
@@ -57,6 +52,33 @@ class ProductListAcitivity : AppCompatActivity(),
             adapter = ProductAdapter(products, productListActivity)
         }
         productController.onGetAllProducts()
+
+        categoryAdapter = ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category))
+        binding.productListSpinnerCategory.adapter = categoryAdapter
+        binding.productListSpinnerCategory.setSelection(0)
+
+        binding.productListSpinnerCategory.onItemSelectedListener = object :
+            android.widget.AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                productController.onGetProductByCategory(categoryAdapter.getItem(position).toString())
+            }
+        }
+
+
+
+
+
+
+
         binding.productListToolbar.setNavigationOnClickListener {
             finish()
         }
@@ -77,19 +99,23 @@ class ProductListAcitivity : AppCompatActivity(),
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onShowAllProducts(products: ArrayList<Product>) {
-//        this.products.clear()
         this.products.addAll(products)
         binding.productListRecyclerView.adapter?.notifyDataSetChanged()
         Log.i("result view", "${products.size}")
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onShowProductsByCategory(products: ArrayList<Product>) {
+        this.products.clear()
+        this.products.addAll(products)
+        binding.productListRecyclerView.adapter?.notifyDataSetChanged()
     }
 
     override fun onShowProductDetail(product: Product) {
         TODO("Not yet implemented")
     }
 
-    override fun onShowProductsByCategory(products: ArrayList<Product>) {
-        TODO("Not yet implemented")
-    }
+
 
     override fun onShowError(error: String) {
         TODO("Not yet implemented")

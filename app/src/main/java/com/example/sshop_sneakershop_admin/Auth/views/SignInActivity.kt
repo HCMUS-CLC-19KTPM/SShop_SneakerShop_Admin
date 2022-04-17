@@ -1,10 +1,13 @@
 package com.example.sshop_sneakershop_admin.Auth.views
 
+import android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
+import android.app.AlertDialog.THEME_HOLO_LIGHT
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.example.sshop_sneakershop_admin.Auth.controllers.AuthController
 import com.example.sshop_sneakershop_admin.Home.views.MainActivity
 import com.example.sshop_sneakershop_admin.R
@@ -13,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.GoogleAuthProvider
 
 class SignInActivity : AppCompatActivity(), IAuthView {
@@ -84,8 +88,8 @@ class SignInActivity : AppCompatActivity(), IAuthView {
     }
 
     override fun onLoginFailed(message: String) {
-        AlertDialog.Builder(this)
-            .setTitle("Login Failed")
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Login failed")
             .setMessage(message)
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
