@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
 import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
 import com.example.sshop_sneakershop_admin.Product.models.Product
@@ -27,6 +25,7 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
     private lateinit var binding: ActivityProductDetailBinding
     private lateinit var productController: ProductController
     private var currentProduct = Product()
+    private lateinit var categoryAdapter: ArrayAdapter<String>
 
     override fun onStart() {
         super.onStart()
@@ -49,47 +48,89 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         Log.i("product-id", "$productID")
         productController.onGetProductById(productID)
 
+        setUpCategorySpinner()
+
+
+
         binding.productDetailImageviewEditPencil.setOnClickListener {
             turnOnEditMode()
         }
+        binding.productDetailButtonSubmit.isEnabled = false
         binding.productDetailButtonSubmit.setOnClickListener {
-            turnOfEditMode()
+            turnOffEditMode()
         }
         binding.itemDetailToolbar.setNavigationOnClickListener {
             finish()
         }
     }
+    fun setUpCategorySpinner() {
+        categoryAdapter = ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category))
+        binding.spinnerCategory.adapter = categoryAdapter
+        binding.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
 
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                currentProduct.category = parent!!.getItemAtPosition(position).toString()
+            }
+        }
+        binding.spinnerCategory.isEnabled = false
+    }
     fun turnOnEditMode() {
-//        productNameET!!.isFocusableInTouchMode = true
-//        productPriceET!!.isFocusableInTouchMode = true
-//        productDescET!!.isFocusableInTouchMode = true
-//        productInfoET!!.isFocusableInTouchMode = true
-//
-//        productNameET!!.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
-//        productPriceET!!.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
-//        productDescET!!.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
-//        productInfoET!!.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
-//        submitBtn!!.isEnabled = true
+        binding.productDetailEdittextProductName.isFocusableInTouchMode = true
+        binding.productDetailEdittextProductOldPrice.isFocusableInTouchMode = true
+        binding.productDetailEdittextDiscount.isFocusableInTouchMode = true
+        binding.productDetailEdittextDescriptionContent.isFocusableInTouchMode = true
+        binding.productDetailQuantity1.isFocusableInTouchMode = true
+        binding.productDetailQuantity2.isFocusableInTouchMode = true
+        binding.productDetailQuantity3.isFocusableInTouchMode = true
+        binding.productDetailQuantity4.isFocusableInTouchMode = true
+        binding.spinnerCategory.isEnabled = true
+
+
+        binding.productDetailEdittextProductName.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailEdittextProductOldPrice.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailEdittextDiscount.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailEdittextDescriptionContent.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailQuantity1.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailQuantity2.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailQuantity3.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailQuantity4.setBackgroundResource(androidx.appcompat.R.drawable.abc_edit_text_material)
+        binding.productDetailButtonSubmit.isEnabled = true
     }
 
-    fun turnOfEditMode() {
-//        productNameET!!.clearFocus()
-//        productPriceET!!.clearFocus()
-//        productDescET!!.clearFocus()
-//        productInfoET!!.clearFocus()
-//
-//        productNameET!!.isFocusableInTouchMode = false
-//        productPriceET!!.isFocusableInTouchMode = false
-//        productDescET!!.isFocusableInTouchMode = false
-//        productInfoET!!.isFocusableInTouchMode = false
-//
-//        productNameET!!.background = null
-//        productPriceET!!.background = null
-//        productDescET!!.background = null
-//        productInfoET!!.background = null
-//
-//        submitBtn!!.isEnabled = false
+    fun turnOffEditMode() {
+        binding.spinnerCategory.isEnabled = false
+
+        binding.productDetailEdittextProductName.clearFocus()
+        binding.productDetailEdittextProductOldPrice.clearFocus()
+        binding.productDetailEdittextDiscount.clearFocus()
+        binding.productDetailEdittextDescriptionContent.clearFocus()
+        binding.productDetailQuantity1.clearFocus()
+        binding.productDetailQuantity2.clearFocus()
+        binding.productDetailQuantity3.clearFocus()
+        binding.productDetailQuantity4.clearFocus()
+
+        binding.productDetailEdittextProductName.isFocusableInTouchMode = false
+        binding.productDetailEdittextProductOldPrice.isFocusableInTouchMode = false
+        binding.productDetailEdittextDiscount.isFocusableInTouchMode = false
+        binding.productDetailEdittextDescriptionContent.isFocusableInTouchMode = false
+        binding.productDetailQuantity1.isFocusableInTouchMode = false
+        binding.productDetailQuantity2.isFocusableInTouchMode = false
+        binding.productDetailQuantity3.isFocusableInTouchMode = false
+        binding.productDetailQuantity4.isFocusableInTouchMode = false
+
+        binding.productDetailEdittextProductName.background = null
+        binding.productDetailEdittextProductOldPrice.background = null
+        binding.productDetailEdittextDiscount.background = null
+        binding.productDetailEdittextDescriptionContent.background = null
+        binding.productDetailQuantity1.background = null
+        binding.productDetailQuantity2.background = null
+        binding.productDetailQuantity3.background = null
+        binding.productDetailQuantity4.background = null
+
+        binding.productDetailButtonSubmit.isEnabled = false
     }
 
     override fun onShowAllProducts(products: ArrayList<Product>) {
@@ -108,17 +149,17 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         binding.productDetailEdittextProductName.setText(currentProduct.name)
         val ratingValue = currentProduct.rating
         binding.productDetailTextviewRating.text = "$ratingValue/5.00"
-        binding.productDetailEdittextProductOldPrice.setText("$${currentProduct.price}")
+        binding.productDetailEdittextProductOldPrice.setText(currentProduct.price.toString())
         val currentPrice =
             currentProduct.price - (currentProduct.price * currentProduct.discount / 100)
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.DOWN
-        binding.productDetailPrice.text = "$${df.format(currentPrice)}"
+        binding.productDetailPrice.text = df.format(currentPrice)
 
-        binding.productDetailEdittextDiscount.setText("${currentProduct.discount}%")
+        binding.productDetailEdittextDiscount.setText(currentProduct.discount.toString())
 
         binding.productDetailEdittextDescriptionContent.setText(currentProduct.description)
-        var stock = mutableListOf(0, 0, 0, 0)
+        val stock = mutableListOf(0, 0, 0, 0)
         for (i in 0..currentProduct.stock.size - 1) {
             stock[i] = currentProduct.stock[i]
         }
@@ -134,6 +175,9 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
             "Origin: ${currentProduct.origin}\nBrand: ${currentProduct.brand}\nStyle: ${currentProduct.category}\nReleased date: $releaseDate"
 
         binding.productDetailEdittextInfoContent.text = moreInfo
+        // category set up
+        val categoryList = resources.getStringArray(R.array.category)
+        binding.spinnerCategory.setSelection(categoryList.indexOf(currentProduct.category))
     }
 
     override fun onShowProductsByCategory(products: ArrayList<Product>) {
