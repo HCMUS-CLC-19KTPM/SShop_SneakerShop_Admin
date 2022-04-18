@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop_admin.Product.models
 
+import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -45,6 +46,25 @@ class ProductModel {
             e.printStackTrace()
         }
         return products
+    }
+    /**
+     * Update product on name, price, discount, category, description, quantity
+     */
+    fun updateProduct(product: Product):Boolean{
+        try{
+            db.collection("product").document(product.id)
+                .update("name", product.name, "price", product.price, "discount", product.discount, "category", product.category, "description", product.description, "stock", product.stock)
+                .addOnSuccessListener {
+                    Log.i("update", "Document successfully updated!")
+                }
+                .addOnFailureListener{
+                    Log.i("update", "Error updating document", it)
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+        return true
     }
 
 }

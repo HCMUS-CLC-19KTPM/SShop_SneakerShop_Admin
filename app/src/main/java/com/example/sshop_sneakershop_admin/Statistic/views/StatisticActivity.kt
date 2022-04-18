@@ -3,10 +3,8 @@ package com.example.sshop_sneakershop_admin.Statistic
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop_admin.Product.models.Product
-import com.example.sshop_sneakershop_admin.Product.Views.ProductAdapter
 import com.example.sshop_sneakershop_admin.R
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry

@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop_admin.Product.Views
+package com.example.sshop_sneakershop_admin.Product.views
 
 import com.example.sshop_sneakershop_admin.Product.models.Product
 

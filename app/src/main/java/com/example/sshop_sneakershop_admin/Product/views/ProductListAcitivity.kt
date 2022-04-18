@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop_admin.Product.Views
+package com.example.sshop_sneakershop_admin.Product.views
 
 import android.annotation.SuppressLint
 import android.content.Intent

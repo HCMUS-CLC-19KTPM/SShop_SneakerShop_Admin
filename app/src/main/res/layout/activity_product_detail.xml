@@ -639,13 +639,13 @@
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:text="$"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/product_detail_edittext_product_old_price"
             app:layout_constraintEnd_toStartOf="@+id/product_detail_edittext_product_old_price"
-            app:layout_constraintTop_toTopOf="@+id/product_detail_edittext_product_old_price"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/product_detail_edittext_product_old_price" />
+
         <EditText
             android:id="@+id/product_detail_edittext_product_old_price"
             android:layout_width="wrap_content"
@@ -655,7 +655,7 @@
             android:background="@null"
             android:clickable="false"
             android:focusable="false"
-            android:text="21.00"
+            android:text="284.12"
             android:textColor="@color/dark_gray"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

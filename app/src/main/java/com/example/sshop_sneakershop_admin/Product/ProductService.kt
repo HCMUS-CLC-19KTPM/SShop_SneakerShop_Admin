@@ -15,4 +15,7 @@ class ProductService {
     suspend fun getProductsByCategory(category: String): ArrayList<Product> {
         return productModel.getProductsByCategory(category)
     }
+    fun updateProduct(product: Product): Boolean{
+        return productModel.updateProduct(product)
+    }
 }

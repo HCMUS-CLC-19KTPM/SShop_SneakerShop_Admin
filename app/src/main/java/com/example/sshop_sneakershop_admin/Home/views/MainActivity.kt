@@ -6,14 +6,11 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop_admin.Account.views.AccountListActivity
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
 import com.example.sshop_sneakershop_admin.Order.OrderListActivity
 import com.example.sshop_sneakershop_admin.Product.models.Product
-import com.example.sshop_sneakershop_admin.Product.Views.ProductDetailActivity
-import com.example.sshop_sneakershop_admin.Product.Views.ProductListAcitivity
-import com.example.sshop_sneakershop_admin.Product.Views.ProductAdapter
+import com.example.sshop_sneakershop_admin.Product.views.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
 import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding

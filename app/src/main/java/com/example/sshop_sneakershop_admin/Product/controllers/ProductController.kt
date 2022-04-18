@@ -1,7 +1,7 @@
 package com.example.sshop_sneakershop_admin.Product.controllers
 
 import com.example.sshop_sneakershop_admin.Product.ProductService
-import com.example.sshop_sneakershop_admin.Product.Views.IProductView
+import com.example.sshop_sneakershop_admin.Product.views.IProductView
 import com.example.sshop_sneakershop_admin.Product.models.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +56,7 @@ class ProductController(private val view: IProductView) : IProductController {
     }
 
     override fun updateProduct(product: Product): Boolean {
-        TODO("Not yet implemented")
+        return productService.updateProduct(product)
     }
 
     override fun deleteProduct(id: Int): Boolean {

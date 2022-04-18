@@ -32,4 +32,14 @@
         <item>Canvas</item>
         <item>Synthetic</item>
     </string-array>
+    <string-array name="category_2">
+        <item>Plimsoll</item>
+        <item>High-Top</item>
+        <item>Athletic</item>
+        <item>Slip-on</item>
+        <item>Authentic</item>
+        <item>Leather</item>
+        <item>Canvas</item>
+        <item>Synthetic</item>
+    </string-array>
 </resources>
