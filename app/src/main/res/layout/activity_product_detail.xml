@@ -56,17 +56,89 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_description_content" />
 
+
+        <TextView
+            android:id="@+id/productQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:text="Quantity"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/productSize"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_description_content" />
+
+        <EditText
+            android:id="@+id/product_detail_quantity_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="7"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/productQuantity" />
+
+        <EditText
+            android:id="@+id/product_detail_quantity_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="7"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_quantity_1" />
+
+        <EditText
+            android:id="@+id/product_detail_quantity_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="7"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_quantity_2" />
+        <EditText
+            android:id="@+id/product_detail_quantity_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="7"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_quantity_3" />
+
+
         <TextView
             android:id="@+id/productDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
             android:text="Description"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_detail_textview_rating" />
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <ImageView
             android:id="@+id/product_detail_imageview"
@@ -101,45 +173,34 @@
 
         <EditText
             android:id="@+id/product_detail_edittext_product_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Product name"
+            android:layout_marginEnd="8dp"
             android:background="@null"
             android:clickable="false"
             android:focusable="false"
+            android:text="Product name"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/product_detail_imageview_edit_pencil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_detail_imageview" />
 
         <TextView
-            android:id="@+id/product_detail_textview_product_price"
+            android:id="@+id/product_detail_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-            android:text="$20.22"
+            android:text="$250"
             android:textColor="@color/primary"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@+id/product_detail_edittext_product_name"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_product_name" />
 
-
-        <EditText
-            android:id="@+id/product_detail_edittext_product_old_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="$21.00"
-            android:background="@null"
-            android:clickable="false"
-            android:focusable="false"
-            android:textColor="@color/dark_gray"
-            android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/button"
@@ -185,13 +246,14 @@
             android:focusable="false"
             android:text="This high-heeled lace-up shoe is made from dark blue and white zebra-stripe print fabric.  It has a rounded appearance.  It is accented with beads and blue feathers."
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="94dp"
+            android:layout_height="190dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -255,7 +317,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-        <EditText
+        <TextView
             android:id="@+id/product_detail_edittext_info_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -265,19 +327,18 @@
             android:text="The White Nike Air 7000 is a lightweight yet supportive running shoe that will last for years. Shop now.
 \nBuy the White Nike Air 7000. This is a lightweight yet support running shoe that will last for years.
 \nThe White Nike Air 7000 is a lightweight yet supportive running shoe that will last for years. Rated 4.8/5 by our shoppers. Shop now."
-            android:background="@null"
-            android:clickable="false"
-            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/productInfo" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="191dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="46dp"
             android:layout_marginTop="12dp"
             android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/radioGroup"
             app:layout_constraintTop_toBottomOf="@+id/productSize">
 
@@ -308,42 +369,41 @@
                         android:id="@+id/txt1"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="US"
-                        android:textStyle="bold"
                         android:background="@color/primary"
-                        android:textColor="@color/white"
+                        android:text="US"
                         android:textAlignment="center"
-                        />
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt2"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="UK"
-                        android:textStyle="bold"
                         android:background="@color/primary"
+                        android:text="UK"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textAlignment="center" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt3"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="EU"
-                        android:textStyle="bold"
                         android:background="@color/primary"
+                        android:text="EU"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textAlignment="center" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt4"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="JP"
-                        android:textStyle="bold"
                         android:background="@color/primary"
+                        android:text="JP"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textAlignment="center" />
+                        android:textStyle="bold" />
                 </TableRow>
 
                 <TableRow
@@ -376,9 +436,9 @@
                 </TableRow>
 
                 <TableRow
-                    android:background="@color/faded_orange"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/faded_orange">
 
                     <TextView
                         android:layout_width="40dp"
@@ -435,9 +495,9 @@
                 </TableRow>
 
                 <TableRow
-                    android:background="@color/faded_orange"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/faded_orange">
 
                     <TextView
                         android:layout_width="40dp"
@@ -472,32 +532,126 @@
             android:id="@+id/product_detail_imageview_edit_pencil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/image_view_border"
             android:src="@drawable/ic_baseline_mode_edit_outline_24"
-            app:layout_constraintBottom_toBottomOf="@+id/product_detail_edittext_product_name"
-            app:layout_constraintStart_toEndOf="@+id/product_detail_edittext_product_name"
-            app:layout_constraintTop_toTopOf="@+id/product_detail_edittext_product_name"
-            android:background="@drawable/image_view_border"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_imageview" />
 
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="16dp"
+            android:text="Category:"
+            android:textColor="@color/primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_info_content" />
+
+        <Button
+            android:id="@+id/product_detail_button_delete"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:text="Delete Product"
+            android:textAllCaps="false"
+            android:textColor="@color/primary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:strokeColor="@color/primary" />
 
         <Button
             android:id="@+id/product_detail_button_submit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="30dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@color/primary"
-            android:text="Submit Changes"
             android:enabled="false"
+            android:text="Submit Changes"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:icon ="@drawable/ic_baseline_file_upload_24"
+            app:icon="@drawable/ic_baseline_file_upload_24"
             app:iconGravity="textStart"
             app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_detail_edittext_info_content" />
+            app:layout_constraintTop_toBottomOf="@id/product_detail_button_delete"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Original Price:"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/product_detail_edittext_product_old_price"
+            app:layout_constraintEnd_toStartOf="@+id/product_detail_edittext_product_old_price"
+            app:layout_constraintTop_toTopOf="@+id/product_detail_edittext_product_old_price"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <EditText
+            android:id="@+id/product_detail_edittext_product_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="$21.00"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_price" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Discount:"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/product_detail_edittext_discount"
+            app:layout_constraintEnd_toStartOf="@+id/product_detail_edittext_discount"
+            app:layout_constraintTop_toTopOf="@+id/product_detail_edittext_discount" />
+
+        <EditText
+            android:id="@+id/product_detail_edittext_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="10%"
+            android:textColor="@color/dark_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_detail_edittext_product_old_price" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

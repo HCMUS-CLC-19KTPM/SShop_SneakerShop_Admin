@@ -18,6 +18,7 @@ class Product {
     var origin: String = ""
     var releaseDate: Date = Date()
     var rating: Double = 0.0
+    var discount: Double = 0.0
 
     constructor()
 
@@ -89,4 +90,49 @@ class Product {
         this.rating = rating
     }
 
+    constructor(
+        id: String,
+        price: Double,
+        name: String,
+        image: String?,
+        description: String?,
+        quantity: ArrayList<Int>,
+        category: String,
+        brand: String,
+        size: String,
+        origin: String,
+        releaseDate: Date,
+        rating: Double,
+        discount: Double
+    ) {
+        this.id = id
+        this.price = price
+        this.name = name
+        this.image = image
+        this.description = description
+        this.stock = quantity
+        this.category = category
+        this.brand = brand
+        this.size = size
+        this.origin = origin
+        this.releaseDate = releaseDate
+        this.rating = rating
+        this.discount = discount
+    }
+
+    constructor(product: Product){
+        this.id = product.id
+        this.price = product.price
+        this.name = product.name
+        this.image = product.image
+        this.description = product.description
+        this.stock = product.stock
+        this.category = product.category
+        this.brand = product.brand
+        this.size = product.size
+        this.origin = product.origin
+        this.releaseDate = product.releaseDate
+        this.rating = product.rating
+        this.discount = product.discount
+    }
 }
