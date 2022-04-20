@@ -22,10 +22,10 @@ class ProductService {
     fun deleteProduct(id: String): Boolean{
         return productModel.deleteProduct(id)
     }
-    fun addProduct(product: Product): Boolean{
+    suspend fun addProduct(product: Product): Product{
         return productModel.addProduct(product)
     }
-    fun uploadImage(uri: Uri): String{
+    suspend fun uploadImage(uri: Uri): String{
         return productModel.uploadImage(uri)
     }
 }

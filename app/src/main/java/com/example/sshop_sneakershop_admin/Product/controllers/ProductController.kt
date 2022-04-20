@@ -2,12 +2,9 @@ package com.example.sshop_sneakershop_admin.Product.controllers
 
 import android.net.Uri
 import com.example.sshop_sneakershop_admin.Product.ProductService
-import com.example.sshop_sneakershop_admin.Product.views.IProductView
 import com.example.sshop_sneakershop_admin.Product.models.Product
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.sshop_sneakershop_admin.Product.views.IProductView
+import kotlinx.coroutines.*
 
 class ProductController(private val view: IProductView) : IProductController {
     private var productService: ProductService = ProductService()
@@ -56,12 +53,22 @@ class ProductController(private val view: IProductView) : IProductController {
      * create product with brand, name, price, discount, category, description, image, releaseDate, stock
      * origin, rating, review will be null for default
      */
-    override fun addProduct(product: Product): Boolean {
-        return productService.addProduct(product)
+    override fun addProduct(product: Product) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val product = productService.addProduct(product)
+            withContext(Dispatchers.Main){
+                view.onAddProductSuccess(product)
+            }
+        }
     }
 
-    override fun uploadImage(uri: Uri): String {
-        return productService.uploadImage(uri)
+    override fun uploadImage(uri: Uri) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val image = productService.uploadImage(uri)
+            withContext(Dispatchers.Main) {
+                view.onUploadImageSuccess(image)
+            }
+        }
     }
 
     override fun updateProduct(product: Product): Boolean {

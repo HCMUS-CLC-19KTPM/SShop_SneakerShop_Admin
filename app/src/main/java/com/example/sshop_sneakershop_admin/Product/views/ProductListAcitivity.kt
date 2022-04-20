@@ -146,6 +146,14 @@ class ProductListAcitivity : AppCompatActivity(),
         TODO("Not yet implemented")
     }
 
+    override fun onAddProductSuccess(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUploadImageSuccess(url: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onClick(product: Product) {
         val intent = Intent(applicationContext, ProductDetailActivity::class.java)
         intent.putExtra("item-id", product.id)

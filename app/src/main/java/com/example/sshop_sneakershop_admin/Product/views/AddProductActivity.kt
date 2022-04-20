@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -17,9 +18,11 @@ import com.example.sshop_sneakershop_admin.databinding.ActivityAddProductBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 import java.net.URI
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.coroutines.CoroutineContext
 
 class AddProductActivity : AppCompatActivity(), IProductView {
     private lateinit var binding: ActivityAddProductBinding
@@ -72,32 +75,8 @@ class AddProductActivity : AppCompatActivity(), IProductView {
         product.origin = "US"
         product.rating = 0.0
         product.reviews = ArrayList<Review>()
-        product.image = productController.uploadImage(imageUri)
-        val isSuccess = productController.addProduct(product)
-//        val progressDialog = ProgressDialog(this)
-//        progressDialog.setMessage("Adding product...")
-//        progressDialog.setCancelable(false)
-//        progressDialog.show()
-        if (isSuccess) {
-//            progressDialog.dismiss()
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Success")
-                .setMessage("Product added successfully")
-                .setPositiveButton("OK") { dialog, _ ->
-                    dialog.dismiss()
-                    finish()
-                }
-                .show()
-        } else {
-//            progressDialog.dismiss()
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Error")
-                .setMessage("Something went wrong")
-                .setPositiveButton("OK") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
-        }
+        productController.uploadImage(imageUri)
+
     }
     fun selectImage() {
         val intent = Intent()
@@ -148,4 +127,22 @@ class AddProductActivity : AppCompatActivity(), IProductView {
     override fun onShowError(error: String) {
         TODO("Not yet implemented")
     }
+
+    override fun onAddProductSuccess(product: Product) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Success")
+            .setMessage("Product added successfully!")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                finish()
+            }
+            .show()
+    }
+
+    override fun onUploadImageSuccess(url: String) {
+        product.image = url
+        Log.i("image-url","2: ${product.image}")
+        productController.addProduct(product)
+    }
+
 }

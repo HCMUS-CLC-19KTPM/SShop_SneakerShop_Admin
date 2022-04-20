@@ -2,14 +2,15 @@ package com.example.sshop_sneakershop_admin.Product.models
 
 import android.net.Uri
 import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class ProductModel {
     private var db = Firebase.firestore
@@ -88,44 +89,31 @@ class ProductModel {
         }
         return true
     }
-    fun addProduct(product: Product):Boolean{
+    suspend fun addProduct(product: Product):Product{
         try{
-            db.collection("product")
-                .add(product)
-                .addOnSuccessListener {
-                    Log.i("create", "Document successfully uploaded!")
-                }
-                .addOnFailureListener{
-                    Log.i("create", "Error uploading document", it)
-                }
+            val id = db.collection("product").add(product).await().id
+            db.collection("product").document(id).update("id", id)
+            product.id = id
         } catch (e: Exception) {
             e.printStackTrace()
-            return false
         }
-        return true
+        return product
     }
-    fun uploadImage(imageUri: Uri): String{
+    suspend fun uploadImage(imageUri: Uri):String{
         val formater = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
         val now = Date()
         val fileName = formater.format(now)
         var url = ""
         try{
-            storageRef.child("product/${fileName}.jpg").putFile(imageUri)
-                .addOnSuccessListener {
-                    Log.i("create", "Document successfully created!")
-                    storageRef.child("product/${fileName}.jpg").downloadUrl.addOnSuccessListener {
-                        url = it.toString()
-                    }
-                }
-                .addOnFailureListener{
-                    Log.i("create", "Error creating document", it)
-                }
-
+            storageRef.child("product/${fileName}.jpg").putFile(imageUri).await()
+            val uri = storageRef.child("product/${fileName}.jpg").downloadUrl.await()
+            url = uri.toString()
+            Log.i("image-url","1: ${url}")
+            return url
         }catch (e: Exception){
             e.printStackTrace()
             return ""
         }
-        return url
     }
 
 }

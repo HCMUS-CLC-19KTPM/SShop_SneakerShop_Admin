@@ -7,8 +7,8 @@ interface IProductController {
     suspend fun getAllProducts(): ArrayList<Product>
     suspend fun getProductById(id: String): Product
     suspend fun getProductsByCategory(category: String): ArrayList<Product>
-    fun addProduct(product: Product): Boolean
-    fun uploadImage(uri: Uri): String
+    fun addProduct(product: Product)
+    fun uploadImage(uri: Uri)
     fun updateProduct(product: Product): Boolean
     fun deleteProduct(id: String): Boolean
     fun onGetAllProducts()

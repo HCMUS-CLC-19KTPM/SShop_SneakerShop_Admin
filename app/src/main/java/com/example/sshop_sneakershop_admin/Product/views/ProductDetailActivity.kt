@@ -238,4 +238,12 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
     override fun onShowError(error: String) {
         TODO("Not yet implemented")
     }
+
+    override fun onAddProductSuccess(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUploadImageSuccess(url: String) {
+        TODO("Not yet implemented")
+    }
 }
