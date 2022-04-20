@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop_admin.Product.controllers
 
+import android.net.Uri
 import com.example.sshop_sneakershop_admin.Product.ProductService
 import com.example.sshop_sneakershop_admin.Product.views.IProductView
 import com.example.sshop_sneakershop_admin.Product.models.Product
@@ -51,16 +52,24 @@ class ProductController(private val view: IProductView) : IProductController {
         }
     }
 
-    override fun createProduct(product: Product): Boolean {
-        TODO("Not yet implemented")
+    /**
+     * create product with brand, name, price, discount, category, description, image, releaseDate, stock
+     * origin, rating, review will be null for default
+     */
+    override fun addProduct(product: Product): Boolean {
+        return productService.addProduct(product)
+    }
+
+    override fun uploadImage(uri: Uri): String {
+        return productService.uploadImage(uri)
     }
 
     override fun updateProduct(product: Product): Boolean {
         return productService.updateProduct(product)
     }
 
-    override fun deleteProduct(id: Int): Boolean {
-        TODO("Not yet implemented")
+    override fun deleteProduct(id: String): Boolean {
+        return productService.deleteProduct(id)
     }
 
 

@@ -59,30 +59,56 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         binding.productDetailButtonSubmit.setOnClickListener {
             // update on name, price, discount, category, description, quantity
             turnOffEditMode()
-            if(productController.updateProduct(currentProduct)){
+            if (productController.updateProduct(currentProduct)) {
                 Toast.makeText(this, "Update success", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 Toast.makeText(this, "Update failed", Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.productDetailButtonDelete.setOnClickListener {
+            val builder = MaterialAlertDialogBuilder(this)
+            builder.setTitle("Delete product")
+            builder.setMessage("Are you sure you want to delete this product?")
+            builder.setPositiveButton("Yes") { dialog, which ->
+                if (productController.deleteProduct(currentProduct.id)) {
+                    Toast.makeText(this, "Delete success", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Delete failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            builder.show()
         }
         binding.itemDetailToolbar.setNavigationOnClickListener {
             finish()
         }
     }
-    fun setUpCategorySpinner() {
-        categoryAdapter = ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category_2))
-        binding.spinnerCategory.adapter = categoryAdapter
-        binding.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                currentProduct.category = parent!!.getItemAtPosition(position).toString()
+    fun setUpCategorySpinner() {
+        categoryAdapter =
+            ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category_2))
+        binding.spinnerCategory.adapter = categoryAdapter
+        binding.spinnerCategory.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    currentProduct.category = parent!!.getItemAtPosition(position).toString()
+                }
             }
-        }
         binding.spinnerCategory.isEnabled = false
     }
+
     fun turnOnEditMode() {
         MaterialAlertDialogBuilder(this)
             .setTitle("Edit Product")
@@ -121,10 +147,12 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         currentProduct.price = binding.productDetailEdittextProductOldPrice.text.toString().toDouble()
         currentProduct.discount = binding.productDetailEdittextDiscount.text.toString().toDouble()
         currentProduct.description = binding.productDetailEdittextDescriptionContent.text.toString()
-        currentProduct.stock = arrayListOf(binding.productDetailQuantity1.text.toString().toInt(),
+        currentProduct.stock = arrayListOf(
+            binding.productDetailQuantity1.text.toString().toInt(),
             binding.productDetailQuantity2.text.toString().toInt(),
             binding.productDetailQuantity3.text.toString().toInt(),
-            binding.productDetailQuantity4.text.toString().toInt())
+            binding.productDetailQuantity4.text.toString().toInt()
+        )
         currentProduct.category = binding.spinnerCategory.selectedItem.toString()
 
         binding.productDetailEdittextProductName.clearFocus()
@@ -174,8 +202,7 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         val ratingValue = currentProduct.rating
         binding.productDetailTextviewRating.text = "$ratingValue/5.00"
         binding.productDetailEdittextProductOldPrice.setText(currentProduct.price.toString())
-        val currentPrice =
-            currentProduct.price - (currentProduct.price * currentProduct.discount / 100)
+        val currentPrice = currentProduct.price - (currentProduct.price * currentProduct.discount / 100)
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.DOWN
         binding.productDetailPrice.text = "$${df.format(currentPrice)}"

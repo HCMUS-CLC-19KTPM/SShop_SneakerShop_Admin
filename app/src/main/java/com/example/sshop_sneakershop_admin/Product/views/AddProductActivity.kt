@@ -1,12 +1,151 @@
 package com.example.sshop_sneakershop_admin.Product.views
 
+import android.app.ProgressDialog
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
+import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
+import com.example.sshop_sneakershop_admin.Product.models.Product
 import com.example.sshop_sneakershop_admin.R
+import com.example.sshop_sneakershop_admin.Review.models.Review
+import com.example.sshop_sneakershop_admin.databinding.ActivityAddProductBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import java.net.URI
+import java.util.*
+import kotlin.collections.ArrayList
 
-class AddProductActivity : AppCompatActivity() {
+class AddProductActivity : AppCompatActivity(), IProductView {
+    private lateinit var binding: ActivityAddProductBinding
+    private lateinit var productController: ProductController
+    private lateinit var categoryAdapter: ArrayAdapter<String>
+    private var product: Product = Product()
+    private lateinit var imageUri: Uri
+
+    override fun onStart() {
+        super.onStart()
+        val auth = Firebase.auth
+        if (auth.currentUser == null || !auth.currentUser!!.isEmailVerified) {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_product);
+        binding = ActivityAddProductBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        productController = ProductController(this)
+        setUpCategorySpinner()
+
+
+        binding.addProductButtonAddImage.setOnClickListener {
+            selectImage()
+        }
+
+        binding.addProductButtonSubmit.setOnClickListener {
+            addProductBtnHandler()
+        }
+        binding.addProductToolbar.setNavigationOnClickListener {
+            finish()
+        }
+    }
+    fun addProductBtnHandler(){
+        product.name = binding.addProductProductName.text.toString()
+        product.price = binding.addProductEdittextProductPrice.text.toString().toDouble()
+        product.category = binding.addProductSpinnerProductCategory.selectedItem.toString()
+        product.description = binding.addProductEdittextProductDescription.text.toString()
+        product.brand = binding.adminAddProductEdittextProductBrand.text.toString()
+        product.discount = binding.addProductEdittextProductDiscount.text.toString().toDouble()
+        product.stock = arrayListOf(binding.quantity1.text.toString().toInt(),
+            binding.quantity2.text.toString().toInt(),
+            binding.quantity3.text.toString().toInt(),
+            binding.quantity4.text.toString().toInt())
+        product.releaseDate = Date()
+        product.origin = "US"
+        product.rating = 0.0
+        product.reviews = ArrayList<Review>()
+        product.image = productController.uploadImage(imageUri)
+        val isSuccess = productController.addProduct(product)
+//        val progressDialog = ProgressDialog(this)
+//        progressDialog.setMessage("Adding product...")
+//        progressDialog.setCancelable(false)
+//        progressDialog.show()
+        if (isSuccess) {
+//            progressDialog.dismiss()
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Success")
+                .setMessage("Product added successfully")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                    finish()
+                }
+                .show()
+        } else {
+//            progressDialog.dismiss()
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Error")
+                .setMessage("Something went wrong")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+    fun selectImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 100 && resultCode == RESULT_OK && data != null) {
+            imageUri = data.data!!
+            binding.addProductImageView.setImageURI(imageUri)
+        }
+    }
+    fun setUpCategorySpinner() {
+        categoryAdapter =
+            ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category_2))
+        binding.addProductSpinnerProductCategory.adapter = categoryAdapter
+        binding.addProductSpinnerProductCategory.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    product.category = parent!!.getItemAtPosition(position).toString()
+                }
+            }
+    }
+    override fun onShowAllProducts(products: ArrayList<Product>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShowProductDetail(product: Product) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShowProductsByCategory(products: ArrayList<Product>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShowError(error: String) {
+        TODO("Not yet implemented")
     }
 }

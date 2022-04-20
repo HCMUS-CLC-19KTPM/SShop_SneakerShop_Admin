@@ -1,5 +1,6 @@
 package com.example.sshop_sneakershop_admin.Product.models
 
+import com.example.sshop_sneakershop_admin.Review.models.Review
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -19,6 +20,7 @@ class Product {
     var releaseDate: Date = Date()
     var rating: Double = 0.0
     var discount: Double = 0.0
+    var reviews: ArrayList<Review>? = null
 
     constructor()
 
@@ -118,6 +120,37 @@ class Product {
         this.releaseDate = releaseDate
         this.rating = rating
         this.discount = discount
+    }
+    constructor(
+        id: String,
+        price: Double,
+        name: String,
+        image: String?,
+        description: String?,
+        quantity: ArrayList<Int>,
+        category: String,
+        brand: String,
+        size: String,
+        origin: String,
+        releaseDate: Date,
+        rating: Double,
+        discount: Double,
+        reviews: ArrayList<Review>
+    ) {
+        this.id = id
+        this.price = price
+        this.name = name
+        this.image = image
+        this.description = description
+        this.stock = quantity
+        this.category = category
+        this.brand = brand
+        this.size = size
+        this.origin = origin
+        this.releaseDate = releaseDate
+        this.rating = rating
+        this.discount = discount
+        this.reviews = reviews
     }
 
     constructor(product: Product){

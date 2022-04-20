@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/admin_add_product_coordinator_layout"
+        android:id="@+id/add_product_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/admin_add_product_nested_scroll_view"
+            android:id="@+id/add_product_nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -29,7 +29,7 @@
             <!-- Scrollable content -->
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/admin_add_product_toolbar"
+                android:id="@+id/add_product_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
                 android:background="@color/primary"
@@ -46,14 +46,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_add_product_coordinator_layout">
+        app:layout_constraintTop_toBottomOf="@+id/add_product_coordinator_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/admin_add_product_image_view"
+                android:id="@+id/add_product_image_view"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:src="@drawable/product"
@@ -64,18 +64,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/admin_add_product_button_add_image"
+                android:id="@+id/add_product_button_add_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
                 app:backgroundTint="@color/primary"
-                app:layout_constraintBottom_toBottomOf="@+id/admin_add_product_image_view"
-                app:layout_constraintEnd_toEndOf="@+id/admin_add_product_image_view"
+                app:layout_constraintBottom_toBottomOf="@+id/add_product_image_view"
+                app:layout_constraintEnd_toEndOf="@+id/add_product_image_view"
                 app:srcCompat="@drawable/ic_baseline_add_24" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/admin_add_product_edittext_product_name"
+                android:id="@+id/add_product_product_name_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -85,15 +85,16 @@
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/admin_add_product_image_view">
+                app:layout_constraintTop_toBottomOf="@id/add_product_image_view">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_product_product_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/admin_add_product_edittext_product_description"
+                android:id="@+id/add_product_product_description_layout"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="30dp"
@@ -104,34 +105,36 @@
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/admin_add_product_edittext_product_name">
+                app:layout_constraintTop_toBottomOf="@id/add_product_product_name_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_product_edittext_product_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/admin_add_product_edittext_product_quantity"
+                android:id="@+id/add_product_product_brand_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
-                android:hint="Number of Products"
+                android:hint="Product Brand"
                 app:boxStrokeColor="@color/primary"
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/admin_add_product_edittext_product_description">
+                app:layout_constraintTop_toBottomOf="@id/add_product_product_description_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/admin_add_product_edittext_product_brand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/admin_add_product_edittext_product_price"
+                android:id="@+id/add_product_product_price_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -142,9 +145,30 @@
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/admin_add_product_edittext_product_quantity">
+                app:layout_constraintTop_toBottomOf="@id/add_product_product_brand_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_product_edittext_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_product_product_discount_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Product Discount"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_product_product_price_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_product_edittext_product_discount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -154,25 +178,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Product Category:"
                 android:textColor="@color/primary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/admin_add_product_edittext_product_price" />
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
             <Spinner
-                android:id="@+id/admin_add_product_spinner_product_category"
+                android:id="@+id/add_product_spinner_product_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/admin_add_product_edittext_product_price" />
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
             <Button
-                android:id="@+id/admin_add_product_button_submit"
+                android:id="@+id/add_product_button_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -189,6 +213,117 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:text="Product Quantity:"
+                android:textColor="@color/primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_product_product_discount_layout" />
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/txt5"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primary"
+                        android:text="US"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/product_quantity"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primary"
+                        android:text="Quantity"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textAlignment="center" />
+                    <EditText
+                        android:id="@+id/quantity_1"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/faded_orange">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:textAlignment="center" />
+                    <EditText
+                        android:id="@+id/quantity_2"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:textAlignment="center" />
+                    <EditText
+                        android:id="@+id/quantity_3"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/faded_orange">
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/quantity_4"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
+                </TableRow>
+            </TableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
