@@ -124,7 +124,7 @@ class AddProductActivity : AppCompatActivity(), IProductView {
         TODO("Not yet implemented")
     }
 
-    override fun onShowError(error: String) {
+    override fun onShowMessage(msg: String) {
         TODO("Not yet implemented")
     }
 

@@ -6,7 +6,7 @@ interface IProductView {
     fun onShowAllProducts(products: ArrayList<Product>)
     fun onShowProductDetail(product: Product)
     fun onShowProductsByCategory(products: ArrayList<Product>)
-    fun onShowError(error: String)
+    fun onShowMessage(msg: String)
     fun onAddProductSuccess(product: Product)
     fun onUploadImageSuccess(url: String)
 }

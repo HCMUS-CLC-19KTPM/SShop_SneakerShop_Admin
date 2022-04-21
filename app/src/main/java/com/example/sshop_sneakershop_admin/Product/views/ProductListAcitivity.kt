@@ -142,7 +142,7 @@ class ProductListAcitivity : AppCompatActivity(),
 
 
 
-    override fun onShowError(error: String) {
+    override fun onShowMessage(msg: String) {
         TODO("Not yet implemented")
     }
 
@@ -159,5 +159,9 @@ class ProductListAcitivity : AppCompatActivity(),
         intent.putExtra("item-id", product.id)
         startActivity(intent)
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//    }
 
 }

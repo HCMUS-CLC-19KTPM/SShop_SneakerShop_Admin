@@ -1,9 +1,11 @@
 package com.example.sshop_sneakershop_admin.Product.views
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -45,12 +47,10 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
 
         val intent = intent
         val productID = intent.getStringExtra("item-id").toString()
-        Log.i("product-id", "$productID")
+        Log.i("product-id", productID)
         productController.onGetProductById(productID)
 
         setUpCategorySpinner()
-
-
 
         binding.productDetailImageviewEditPencil.setOnClickListener {
             turnOnEditMode()
@@ -58,35 +58,42 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         binding.productDetailButtonSubmit.isEnabled = false
         binding.productDetailButtonSubmit.setOnClickListener {
             // update on name, price, discount, category, description, quantity
-            turnOffEditMode()
-            if (productController.updateProduct(currentProduct)) {
-                Toast.makeText(this, "Update success", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Update failed", Toast.LENGTH_SHORT).show()
-            }
+            btnUpdateHandler()
         }
         binding.productDetailButtonDelete.setOnClickListener {
-            val builder = MaterialAlertDialogBuilder(this)
-            builder.setTitle("Delete product")
-            builder.setMessage("Are you sure you want to delete this product?")
-            builder.setPositiveButton("Yes") { dialog, which ->
-                if (productController.deleteProduct(currentProduct.id)) {
-                    Toast.makeText(this, "Delete success", Toast.LENGTH_SHORT).show()
-                    finish()
-                } else {
-                    Toast.makeText(this, "Delete failed", Toast.LENGTH_SHORT).show()
-                }
-            }
-            builder.setNegativeButton("No") { dialog, which ->
-                dialog.dismiss()
-            }
-            builder.show()
+            btnDeleteHandler()
         }
         binding.itemDetailToolbar.setNavigationOnClickListener {
             finish()
         }
     }
-
+    fun btnUpdateHandler(){
+        turnOffEditMode()
+        val result = productController.updateProduct(currentProduct)
+        if(result){
+            onShowMessage("Update success")
+            SystemClock.sleep(1000)
+            this.recreate()
+        }else
+            onShowMessage("Update failed")
+    }
+    fun btnDeleteHandler(){
+        val builder = MaterialAlertDialogBuilder(this)
+        builder.setTitle("Delete product")
+        builder.setMessage("Are you sure you want to delete this product?")
+        builder.setPositiveButton("Yes") { dialog, which ->
+            if (productController.deleteProduct(currentProduct.id)) {
+                Toast.makeText(this, "Delete success", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                Toast.makeText(this, "Delete failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+        builder.setNegativeButton("No") { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
     fun setUpCategorySpinner() {
         categoryAdapter =
             ArrayAdapter(this, R.layout.spinner_item, resources.getStringArray(R.array.category_2))
@@ -235,8 +242,8 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         TODO("Not yet implemented")
     }
 
-    override fun onShowError(error: String) {
-        TODO("Not yet implemented")
+    override fun onShowMessage(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun onAddProductSuccess(product: Product) {
