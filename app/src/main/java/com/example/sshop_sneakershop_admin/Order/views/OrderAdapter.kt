@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sshop_sneakershop_admin.Order.Order
+import com.example.sshop_sneakershop_admin.Order.models.Order
 import com.example.sshop_sneakershop_admin.R
 
 
