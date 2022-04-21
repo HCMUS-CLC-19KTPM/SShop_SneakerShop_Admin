@@ -22,10 +22,10 @@
             android:name=".Auth.views.SignInActivity"
             android:exported="true" />
         <activity
-            android:name=".Order.OrderDetailActivity"
+            android:name=".Order.views.OrderDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Order.OrderListActivity"
+            android:name=".Order.views.OrderListActivity"
             android:exported="true" />
         <activity
             android:name=".Product.views.AddProductActivity"

@@ -1,4 +1,4 @@
-package com.example.sshop_sneakershop_admin.Order
+package com.example.sshop_sneakershop_admin.Order.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

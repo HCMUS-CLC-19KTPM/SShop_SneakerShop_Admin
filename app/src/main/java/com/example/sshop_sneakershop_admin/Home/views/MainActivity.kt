@@ -8,7 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sshop_sneakershop_admin.Account.views.AccountListActivity
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
-import com.example.sshop_sneakershop_admin.Order.OrderListActivity
+import com.example.sshop_sneakershop_admin.Order.views.OrderListActivity
 import com.example.sshop_sneakershop_admin.Product.models.Product
 import com.example.sshop_sneakershop_admin.Product.views.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.R
