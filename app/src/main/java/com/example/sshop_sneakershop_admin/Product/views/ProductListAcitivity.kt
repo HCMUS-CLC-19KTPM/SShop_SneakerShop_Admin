@@ -31,6 +31,7 @@ class ProductListAcitivity : AppCompatActivity(),
     private lateinit var categoryAdapter: ArrayAdapter<String>
     private lateinit var productAdapter: ProductAdapter
     private var fullProductList: ArrayList<Product> = ArrayList()
+    var previousSelection = 0
 
     override fun onStart() {
         super.onStart()
@@ -79,6 +80,7 @@ class ProductListAcitivity : AppCompatActivity(),
                 position: Int,
                 id: Long
             ) {
+                previousSelection = position
                 productController.onGetProductByCategory(categoryAdapter.getItem(position).toString())
             }
         }
@@ -121,6 +123,8 @@ class ProductListAcitivity : AppCompatActivity(),
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onShowAllProducts(products: ArrayList<Product>) {
+        this.products.clear()
+        this.fullProductList.clear()
         this.products.addAll(products)
         this.fullProductList.addAll(products)
         binding.productListRecyclerView.adapter?.notifyDataSetChanged()
@@ -136,11 +140,25 @@ class ProductListAcitivity : AppCompatActivity(),
         binding.productListRecyclerView.adapter?.notifyDataSetChanged()
     }
 
+    override fun onClick(product: Product) {
+        val intent = Intent(applicationContext, ProductDetailActivity::class.java)
+        intent.putExtra("item-id", product.id)
+        startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(categoryAdapter.getItem(previousSelection) == "All") {
+            productController.onGetAllProducts()
+        } else {
+            productController.onGetProductByCategory(categoryAdapter.getItem(previousSelection).toString())
+        }
+        binding.productListToolbar.collapseActionView()
+    }
+
     override fun onShowProductDetail(product: Product) {
         TODO("Not yet implemented")
     }
-
-
 
     override fun onShowMessage(msg: String) {
         TODO("Not yet implemented")
@@ -153,15 +171,4 @@ class ProductListAcitivity : AppCompatActivity(),
     override fun onUploadImageSuccess(url: String) {
         TODO("Not yet implemented")
     }
-
-    override fun onClick(product: Product) {
-        val intent = Intent(applicationContext, ProductDetailActivity::class.java)
-        intent.putExtra("item-id", product.id)
-        startActivity(intent)
-    }
-
-//    override fun onResume() {
-//        super.onResume()
-//    }
-
 }
