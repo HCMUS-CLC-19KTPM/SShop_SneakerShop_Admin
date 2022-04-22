@@ -22,24 +22,37 @@
 
             <!-- Media -->
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:id="@+id/account_avatar"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:contentDescription="avatar"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:srcCompat="@drawable/account_avatar" />-->
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/account_avatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:contentDescription="avatar"
-                android:scaleType="centerCrop"
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:src="@drawable/user"
+                app:civ_border_color="@color/primary"
+                app:civ_border_width="4dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@color/gainsboro"
+                app:civ_shadow_radius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/account_avatar" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
+                android:id="@+id/constraintLayout2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/account_avatar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 

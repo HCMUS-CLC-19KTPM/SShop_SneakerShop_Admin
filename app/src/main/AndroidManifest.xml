@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SShop_SneakerShop_Admin">
         <activity
+            android:name=".Account.views.EditAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".Statistic.views.StatisticActivity"
             android:exported="false" />
         <activity
