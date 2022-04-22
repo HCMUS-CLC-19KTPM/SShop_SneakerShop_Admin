@@ -25,7 +25,7 @@ class OrderCardViewHolder(
         cardCellBinding.customerAddress.text = order.address
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.DOWN
-        cardCellBinding.totalCost.text = df.format(order.totalCost)
+        cardCellBinding.totalCost.text = "$${df.format(order.totalCost)}"
         cardCellBinding.status.text = order.deliveryStatus
         cardCellBinding.card.setOnClickListener{
             clickListener.onClick(order)

@@ -37,19 +37,6 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
             startActivity(intent)
             finish()
         }
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Đăng xuất")
-            .setMessage("Bạn có chắc chắn muốn đăng xuất?")
-            .setPositiveButton("Đồng ý") { dialog, which ->
-                auth.signOut()
-                val intent = Intent(this, SignInActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            .setNegativeButton("Hủy") { dialog, which ->
-                dialog.dismiss()
-            }
-            .show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

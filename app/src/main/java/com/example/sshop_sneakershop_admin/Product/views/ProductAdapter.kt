@@ -12,10 +12,10 @@ import com.example.sshop_sneakershop_admin.databinding.ProductListItemBinding
 class ProductAdapter(
     private val products: ArrayList<Product>,
     private val clickListener: ItemClickListener,
-    val fullProductList: ArrayList<Product>
+    private val fullProductList: ArrayList<Product>,
+    private val isOnOrderDetail: Boolean
 ) : RecyclerView.Adapter<CardViewHolder>(), Filterable
 {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val from = LayoutInflater.from(parent.context)
         val binding = ProductListItemBinding.inflate(from, parent, false)
@@ -27,7 +27,7 @@ class ProductAdapter(
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        holder.bindItem(products[position])
+        holder.bindItem(products[position], isOnOrderDetail)
     }
 
     override fun getFilter(): Filter {

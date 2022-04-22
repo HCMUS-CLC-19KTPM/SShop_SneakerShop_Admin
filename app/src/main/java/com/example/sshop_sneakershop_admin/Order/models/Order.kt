@@ -34,4 +34,18 @@ data class Order(
         id, name, phone, address,
         ArrayList(), "", Date(), startDate, endDate, 0.0, totalCost, ""
     )
+    constructor(order: Order) : this() {
+        this.id = order.id
+        this.name = order.name
+        this.phone = order.phone
+        this.address = order.address
+        this.cart = order.cart
+        this.deliveryStatus = order.deliveryStatus
+        this.orderedDate = order.orderedDate
+        this.startDate = order.startDate
+        this.endDate = order.endDate
+        this.shippingFee = order.shippingFee
+        this.totalCost = order.totalCost
+        this.userId = order.userId
+    }
 }

@@ -18,8 +18,13 @@ class OrderController(private val view: IOrderView): IOrderController {
         return orderService.getOrderById(id)
     }
 
-    override fun updateOrder(id: String, status: String): Boolean {
-        return orderService.updateOrder(id, status)
+    override fun updateOrder(id: String, status: String) {
+        val result = orderService.updateOrder(id, status)
+        if (result){
+            view.onUpdateOrderSuccess("Update order success!")
+        }else{
+            view.onUpdateOrderFailed("Update order failed!")
+        }
     }
 
     override fun onGetAllOrders() {

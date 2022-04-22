@@ -15,7 +15,7 @@ class CardViewHolder(
     private val clickListener: ItemClickListener
 ) : RecyclerView.ViewHolder(cardCellBinding.root) {
     @SuppressLint("SetTextI18n")
-    fun bindItem(product: Product) {
+    fun bindItem(product: Product, isOnOrderDetail: Boolean) {
         if (TextUtils.isEmpty(product.image)) {
             cardCellBinding.productImage.setImageResource(R.drawable.shoe)
         } else {
@@ -27,13 +27,18 @@ class CardViewHolder(
                 19
             )
         }..." else product.name
-        val price =
-            product.price - (product.price * product.discount / 100)
-        val df = DecimalFormat("#.##")
-        df.roundingMode = RoundingMode.DOWN
-        cardCellBinding.productTextviewPrice.text = "$${df.format(price)}"
-        val quantity = product.stock.sum().toString()
-        cardCellBinding.productTextviewQuantity.text = quantity
+        if(isOnOrderDetail){
+            cardCellBinding.productTextviewPrice.text = "$${product.price}"
+            cardCellBinding.productTextviewQuantity.text = "${product.quantity}"
+        }else{
+            val price =
+                product.price - (product.price * product.discount / 100)
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.DOWN
+            cardCellBinding.productTextviewPrice.text = "$${df.format(price)}"
+            val quantity = product.stock.sum().toString()
+            cardCellBinding.productTextviewQuantity.text = quantity
+        }
         cardCellBinding.productTextviewDescription.text = if (product.description!!.length >= 20) "${
             product.description!!.substring(
                 0,

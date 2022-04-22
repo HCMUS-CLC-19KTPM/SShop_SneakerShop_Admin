@@ -58,7 +58,7 @@ class ProductListAcitivity : AppCompatActivity(),
 //            adapter = ProductAdapter(products, productListActivity, fullProductList)
 //        }
         binding.productListRecyclerView.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        productAdapter = ProductAdapter(products, productListActivity, fullProductList)
+        productAdapter = ProductAdapter(products, productListActivity, fullProductList, false)
         binding.productListRecyclerView.adapter = productAdapter
 
 
