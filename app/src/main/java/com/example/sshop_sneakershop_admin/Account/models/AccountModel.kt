@@ -61,8 +61,8 @@ class AccountModel {
     }
 
     /**
-     * update name, email, address, phone, gender, birthday
-     * update fullName, email, address, phone, gender, dob
+     * update name, email, address, phone, gender, birthday, status
+     * update fullName, email, address, phone, gender, dob, status
      */
     suspend fun updateUser(account: Account): Boolean{
         try{
@@ -70,7 +70,8 @@ class AccountModel {
                 .documents.forEach{
                     it.reference.update("fullName", account.fullName,
                         "email", account.email, "address", account.address,
-                        "phone", account.phone, "gender", account.gender, "dob", account.dob).await()
+                        "phone", account.phone, "gender", account.gender,
+                        "dob", account.dob, "status", account.status).await()
                 }
         }catch (exception: Exception){
             exception.printStackTrace()

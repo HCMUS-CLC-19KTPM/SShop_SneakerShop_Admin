@@ -177,30 +177,21 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:hint="Gender"
+                android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/primary"
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_phone">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/editProfile_textInputET_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
-                    android:focusable="false"
-                    android:inputType="none" />
+                    android:focusable="false" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <Spinner
-                android:id="@+id/editProflie_spinner_gender"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@android:color/transparent"
-                android:spinnerMode="dialog"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editProfile_image_avatar" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editProfile_textInputLayout_dob"
@@ -225,6 +216,29 @@
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editProfile_textInputLayout_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:hint="Status"
+                app:boxStrokeColor="@color/primary"
+                app:hintTextColor="@color/primary"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_dob">
+                <AutoCompleteTextView
+                    android:id="@+id/editProfile_textInputET_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/edit_profile_button_submit"
                 android:layout_width="0dp"
@@ -244,7 +258,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editProfile_textInputLayout_dob" />
+                app:layout_constraintTop_toBottomOf="@id/editProfile_textInputLayout_status" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

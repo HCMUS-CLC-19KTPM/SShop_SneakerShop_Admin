@@ -2,16 +2,16 @@ package com.example.sshop_sneakershop_admin.Account.models
 
 data class Account(
     var id: String,
-    val fullName: String?,
-    val email: String,
-    val address: String?,
-    val phone: String?,
-    val gender: String?,
-    val dob: String?,
-    val avatar: String?,
-    val status: Boolean,
-    val payments: ArrayList<Payment>?,
-    val numOfReview: Int = 0
+    var fullName: String?,
+    var email: String,
+    var address: String?,
+    var phone: String?,
+    var gender: String?,
+    var dob: String?,
+    var avatar: String?,
+    var status: Boolean,
+    var payments: ArrayList<Payment>?,
+    var numOfReview: Int = 0
 ) {
     constructor() : this("", null, "", null, null, null, null, null, true, null)
     constructor(

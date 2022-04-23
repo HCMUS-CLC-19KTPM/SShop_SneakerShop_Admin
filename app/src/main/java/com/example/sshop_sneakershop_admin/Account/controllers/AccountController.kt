@@ -47,5 +47,18 @@ class AccountController(
         }
     }
 
+    override fun onUpdateUser(account: Account) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = accountService.updateUser(account)
+            withContext(Dispatchers.Main){
+                if(result){
+                    view.onUpdateUserSuccess("Update user's information success!")
+                }else{
+                    view.onUpdateUserFailed("Update user's information failed!")
+                }
+            }
+        }
+    }
+
 
 }

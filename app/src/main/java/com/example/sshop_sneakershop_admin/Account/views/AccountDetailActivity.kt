@@ -80,6 +80,7 @@ class AccountDetailActivity : AppCompatActivity(), IAccountView {
 
         binding.profileButtonEditInfo.setOnClickListener {
             val intent = Intent(this, EditAccountActivity::class.java)
+            intent.putExtra("item-id", user.id)
             startActivity(intent)
         }
     }
@@ -119,11 +120,31 @@ class AccountDetailActivity : AppCompatActivity(), IAccountView {
     }
 
     override fun onDeleteUserSuccess(message: String) {
-        TODO("Not yet implemented")
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Delete Account Successfully")
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, which ->
+                dialog.dismiss()
+                finish()
+            }
+            .show()
     }
 
     override fun onDeleteUserFailed(message: String) {
-        TODO("Not yet implemented")
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Delete Account Failed")
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, which ->
+                dialog.dismiss()
+                finish()
+            }
+            .show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val accountID = intent.getStringExtra("item-id").toString()
+        accountController.onGetUserById(accountID)
     }
 }
 

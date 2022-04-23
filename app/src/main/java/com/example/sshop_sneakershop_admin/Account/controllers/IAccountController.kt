@@ -8,4 +8,5 @@ interface IAccountController {
     suspend fun updateUser(account: Account)
     fun onGetAllUsers()
     fun onGetUserById(id: String)
+    fun onUpdateUser(account: Account)
 }
