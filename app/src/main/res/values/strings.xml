@@ -21,6 +21,7 @@
     <string name="nav_header">SShop - Sneaker Shop</string>
     <string name="nav_author">Group007</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="error_input_empty">Please input something</string>
     <string-array name="category">
         <item>All</item>
         <item>Plimsoll</item>

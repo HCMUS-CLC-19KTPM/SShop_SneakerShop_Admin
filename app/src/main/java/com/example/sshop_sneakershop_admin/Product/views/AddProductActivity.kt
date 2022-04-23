@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
 import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
 import com.example.sshop_sneakershop_admin.Product.models.Product
@@ -29,7 +30,7 @@ class AddProductActivity : AppCompatActivity(), IProductView {
     private lateinit var productController: ProductController
     private lateinit var categoryAdapter: ArrayAdapter<String>
     private var product: Product = Product()
-    private lateinit var imageUri: Uri
+    private var imageUri: Uri? = null
 
     override fun onStart() {
         super.onStart()
@@ -61,6 +62,10 @@ class AddProductActivity : AppCompatActivity(), IProductView {
         }
     }
     fun addProductBtnHandler(){
+        if(!isValidInput()){
+            Toast.makeText(this, "Invalid input!", Toast.LENGTH_SHORT).show()
+            return
+        }
         product.name = binding.addProductProductName.text.toString()
         product.price = binding.addProductEdittextProductPrice.text.toString().toDouble()
         product.category = binding.addProductSpinnerProductCategory.selectedItem.toString()
@@ -75,8 +80,40 @@ class AddProductActivity : AppCompatActivity(), IProductView {
         product.origin = "US"
         product.rating = 0.0
         product.reviews = ArrayList<Review>()
-        productController.uploadImage(imageUri)
-
+        imageUri?.let { productController.uploadImage(it) }
+    }
+    fun isValidInput(): Boolean{
+        if(binding.addProductProductName.text.toString().isEmpty()){
+            binding.addProductProductName.error = getString(R.string.error_input_empty)
+            return false
+        }
+        if(binding.addProductEdittextProductDescription.text.toString().isEmpty()){
+            binding.addProductEdittextProductDescription.error = getString(R.string.error_input_empty)
+            return false
+        }
+        if(binding.adminAddProductEdittextProductBrand.text.toString().isEmpty()){
+            binding.adminAddProductEdittextProductBrand.error = getString(R.string.error_input_empty)
+            return  false
+        }
+        if(binding.addProductEdittextProductPrice.text.toString().isEmpty()){
+            binding.addProductEdittextProductPrice.error = getString(R.string.error_input_empty)
+            return false
+        }
+        if(binding.addProductEdittextProductDiscount.text.toString().isEmpty()){
+            binding.addProductEdittextProductDiscount.error = getString(R.string.error_input_empty)
+            return false
+        }
+        if(imageUri == null){
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Image Error")
+                .setMessage("Please select an image")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+            return false
+        }
+        return true
     }
     fun selectImage() {
         val intent = Intent()

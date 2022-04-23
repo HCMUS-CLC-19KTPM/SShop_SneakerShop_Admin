@@ -144,11 +144,13 @@
                 app:boxStrokeColor="@color/primary"
                 app:hintTextColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/add_product_product_brand_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/add_product_edittext_product_price"
+                    android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -170,6 +172,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/add_product_edittext_product_discount"
                     android:layout_width="match_parent"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
