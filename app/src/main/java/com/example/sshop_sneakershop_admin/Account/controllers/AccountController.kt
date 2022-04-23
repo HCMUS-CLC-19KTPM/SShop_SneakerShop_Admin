@@ -29,6 +29,10 @@ class AccountController(
         }
     }
 
+    override suspend fun deleteUser(id: String): Boolean {
+        return accountService.deleteUser(id)
+    }
+
     override fun onGetAllUsers(){
         CoroutineScope(Dispatchers.IO).launch {
             val user = accountService.getAllUsers()
@@ -55,6 +59,19 @@ class AccountController(
                     view.onUpdateUserSuccess("Update user's information success!")
                 }else{
                     view.onUpdateUserFailed("Update user's information failed!")
+                }
+            }
+        }
+    }
+
+    override fun onDeleteUser(id: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = accountService.deleteUser(id)
+            withContext(Dispatchers.Main){
+                if(result){
+                    view.onDeleteUserSuccess("Delete user success!")
+                }else{
+                    view.onDeleteUserFailed("Delete user failed!")
                 }
             }
         }

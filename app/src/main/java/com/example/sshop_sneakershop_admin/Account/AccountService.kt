@@ -15,4 +15,7 @@ class AccountService {
     suspend fun updateUser(account: Account): Boolean{
         return accountModel.updateUser(account)
     }
+    suspend fun deleteUser(id: String): Boolean{
+        return accountModel.deleteAccount(id)
+    }
 }

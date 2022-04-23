@@ -40,7 +40,7 @@ class AccountDetailActivity : AppCompatActivity(), IAccountView {
                 .setTitle("Delete Account")
                 .setMessage("Are you sure to delete this account?")
                 .setPositiveButton("Yes") { dialog, which ->
-//                    accountController.de(accountID)
+                    accountController.onDeleteUser(accountID)
                     dialog.dismiss()
                 }
                 .setNegativeButton("No") { dialog, which ->
@@ -121,7 +121,7 @@ class AccountDetailActivity : AppCompatActivity(), IAccountView {
 
     override fun onDeleteUserSuccess(message: String) {
         MaterialAlertDialogBuilder(this)
-            .setTitle("Delete Account Successfully")
+            .setTitle("Delete Success")
             .setMessage(message)
             .setPositiveButton("OK") { dialog, which ->
                 dialog.dismiss()
@@ -132,7 +132,7 @@ class AccountDetailActivity : AppCompatActivity(), IAccountView {
 
     override fun onDeleteUserFailed(message: String) {
         MaterialAlertDialogBuilder(this)
-            .setTitle("Delete Account Failed")
+            .setTitle("Delete Failed")
             .setMessage(message)
             .setPositiveButton("OK") { dialog, which ->
                 dialog.dismiss()

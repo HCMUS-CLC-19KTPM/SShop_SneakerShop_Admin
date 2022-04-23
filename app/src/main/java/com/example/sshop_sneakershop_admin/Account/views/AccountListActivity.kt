@@ -97,6 +97,10 @@ class AccountListActivity : AppCompatActivity(), IAccountView, AccountClickListe
             .show()
     }
 
+    override fun onResume() {
+        super.onResume()
+        accountController.onGetAllUsers()
+    }
     override fun onDeleteUserSuccess(message: String) {
         TODO("Not yet implemented")
     }

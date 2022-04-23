@@ -79,7 +79,7 @@ class AccountModel {
         }
         return true
     }
-    suspend fun deleteAccount(id: String){
+    suspend fun deleteAccount(id: String): Boolean{
         try{
             db.collection("account").whereEqualTo("id", id).get().await()
                 .documents.forEach{
@@ -87,7 +87,9 @@ class AccountModel {
                 }
         }catch (exception: Exception){
             exception.printStackTrace()
+            return false
         }
+        return true
     }
 
 }
