@@ -10,6 +10,7 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ProductModel {
@@ -28,6 +29,19 @@ class ProductModel {
             e.printStackTrace()
         }
         return products
+    }
+    suspend fun getTop10Products(): ArrayList<Product>{
+        val products = ArrayList<Product>()
+        try{
+            db.collection("product").get().await()
+                .documents.forEach {
+                    val product = it.toObject(Product::class.java)
+                    products.add(product!!)
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return products.slice(0..9) as ArrayList<Product>
     }
     suspend fun getProductById(id: String): Product{
         var product = Product()

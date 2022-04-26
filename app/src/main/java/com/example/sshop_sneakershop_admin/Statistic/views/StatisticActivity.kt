@@ -6,51 +6,40 @@ import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sshop_sneakershop_admin.Product.models.Product
 import com.example.sshop_sneakershop_admin.R
+import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.DataSet
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.jjoe64.graphview.GraphView
+import com.jjoe64.graphview.series.DataPoint
+import com.jjoe64.graphview.series.LineGraphSeries
 
 
 class StatisticActivity : AppCompatActivity() {
-
-    private lateinit var lineList: ArrayList<Entry>
-    private lateinit var lineDataSet: LineDataSet
-    private lateinit var lineData: LineData
-    private lateinit var products: ArrayList<Product>
-    private var line_chart: LineChart? = null
-    private var productRecyclerView: RecyclerView? = null
+    private lateinit var binding: ActivityStatisticBinding
+    private lateinit var graph: GraphView
+    private lateinit var chartSeries: LineGraphSeries<DataPoint>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistic)
-        line_chart = findViewById(R.id.statistic_line_chart)
-        productRecyclerView = findViewById(R.id.statistic_recycler_view)
+//        binding = ActivityStatisticBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+
+//        graph = binding.graph
+//        var y = 0.0
+//        for(x in 0..90){
+//            y = Math.sin(2*x*0.2) - 2*Math.sin(x*0.2)
+//            chartSeries.appendData(DataPoint(x.toDouble(), y), true, 90)
+//        }
+//        graph.addSeries(chartSeries)
 
 
 
-        lineChartSetting()
-        top10ProductSetting()
     }
-    fun lineChartSetting(){
-        lineList = ArrayList()
-        lineList.add(Entry(1f, 200f))
-        lineList.add(Entry(2f, 300f))
-        lineList.add(Entry(3f, 400f))
-        lineList.add(Entry(4f, 500f))
-        lineList.add(Entry(5f, 600f))
-        lineList.add(Entry(6f, 700f))
 
-        lineDataSet = LineDataSet(lineList, "Line Chart")
-        lineData = LineData(lineDataSet)
-        line_chart!!.data = lineData
-        lineDataSet.color = Color.BLACK
-        lineDataSet.valueTextColor = Color.BLUE
-        lineDataSet.valueTextSize=20f
-        lineDataSet.setDrawFilled(true)
-    }
-    fun top10ProductSetting(){
-    }
 
 }

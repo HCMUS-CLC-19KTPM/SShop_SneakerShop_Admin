@@ -27,7 +27,7 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
-class OrderDetailActivity : AppCompatActivity(), IOrderView, ItemClickListener, IProductView {
+class OrderDetailActivity : AppCompatActivity(), IOrderView, ItemClickListener {
     private lateinit var binding: ActivityOrderDetailBinding
     private lateinit var orderController: OrderController
     private lateinit var statusAdapter: ArrayAdapter<String>
@@ -49,7 +49,7 @@ class OrderDetailActivity : AppCompatActivity(), IOrderView, ItemClickListener, 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         orderController = OrderController(this)
-        productController = ProductController(this)
+        productController = ProductController()
         binding = ActivityOrderDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val orderID = intent.getStringExtra("item-id").toString()
@@ -147,30 +147,5 @@ class OrderDetailActivity : AppCompatActivity(), IOrderView, ItemClickListener, 
         val intent = Intent(applicationContext, ProductDetailActivity::class.java)
         intent.putExtra("item-id", product.id)
         startActivity(intent)
-    }
-
-
-    override fun onShowAllProducts(products: ArrayList<Product>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onShowProductDetail(product: Product) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onShowProductsByCategory(products: ArrayList<Product>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onShowMessage(msg: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onAddProductSuccess(product: Product) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onUploadImageSuccess(url: String) {
-        TODO("Not yet implemented")
     }
 }

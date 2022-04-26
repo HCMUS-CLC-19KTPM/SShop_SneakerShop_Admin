@@ -131,6 +131,8 @@ class ProductListAcitivity : AppCompatActivity(),
         Log.i("result view", "${products.size}")
     }
 
+
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onShowProductsByCategory(products: ArrayList<Product>) {
         this.products.clear()

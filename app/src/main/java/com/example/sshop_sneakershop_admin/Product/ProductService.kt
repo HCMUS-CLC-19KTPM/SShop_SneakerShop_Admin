@@ -10,6 +10,9 @@ class ProductService {
     suspend fun getAllProducts(): ArrayList<Product> {
         return productModel.getAllProducts()
     }
+    suspend fun getTop10Products(): ArrayList<Product> {
+        return productModel.getTop10Products()
+    }
     suspend fun getProductById(id: String): Product {
         return productModel.getProductById(id)
     }

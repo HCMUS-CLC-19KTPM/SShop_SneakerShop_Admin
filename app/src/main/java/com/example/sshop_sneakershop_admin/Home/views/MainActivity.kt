@@ -1,37 +1,42 @@
 package com.example.sshop_sneakershop_admin.Home.views
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop_admin.Account.views.AccountListActivity
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
 import com.example.sshop_sneakershop_admin.Order.views.OrderListActivity
+import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
 import com.example.sshop_sneakershop_admin.Product.models.Product
+import com.example.sshop_sneakershop_admin.Product.views.ItemClickListener
+import com.example.sshop_sneakershop_admin.Product.views.ProductAdapter
+import com.example.sshop_sneakershop_admin.Product.views.ProductDetailActivity
 import com.example.sshop_sneakershop_admin.Product.views.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
-import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.jjoe64.graphview.GridLabelRenderer
+import com.jjoe64.graphview.LegendRenderer
+import com.jjoe64.graphview.helper.StaticLabelsFormatter
+import com.jjoe64.graphview.series.DataPoint
+import com.jjoe64.graphview.series.LineGraphSeries
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
 
     private lateinit var bindings: ActivityMainBinding
     private val auth = Firebase.auth
+    private lateinit var productController: ProductController
+    private var top10Products = ArrayList<Product>()
 
-    private lateinit var lineList: ArrayList<Entry>
-    private lateinit var lineDataSet: LineDataSet
-    private lateinit var lineData: LineData
-    private lateinit var products: ArrayList<Product>
-
-
+//    private lateinit var graph: GraphView
+    private var chartSeries: LineGraphSeries<DataPoint> = LineGraphSeries()
 
     override fun onStart() {
         super.onStart()
@@ -48,8 +53,44 @@ class MainActivity : AppCompatActivity() {
 
         bindings = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindings.root)
+        productController = ProductController(null, this)
 
         val statisticBinding = bindings.contentStatistic
+        // graph config
+//        graph = statisticBinding.graph
+        for(x in 2..8){
+            var y = Math.sin(2 * x * 0.2)
+            chartSeries.appendData(DataPoint(x.toDouble(), y), true, 90)
+        }
+        // set manual X bounds
+        statisticBinding.graph.addSeries(chartSeries)
+        chartSeries.title = "Income"
+        chartSeries.thickness = 8
+        chartSeries.isDrawDataPoints = true
+        statisticBinding.graph.legendRenderer.isVisible = true
+        statisticBinding.graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP
+        val gridLable: GridLabelRenderer = statisticBinding.graph.gridLabelRenderer
+        gridLable.horizontalAxisTitle = "Day In Week"
+        gridLable.horizontalAxisTitleTextSize = 50F
+        // axis titles
+        val staticLabelsFormatter = StaticLabelsFormatter(statisticBinding.graph)
+        staticLabelsFormatter.setHorizontalLabels(arrayOf("2", "3", "4", "5", "6", "7", "8"))
+
+//        staticLabelsFormatter.setHorizontalLabels(arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+//        staticLabelsFormatter.setVerticalLabels(arrayOf("low", "middle", "high"))
+        statisticBinding.graph.gridLabelRenderer.labelFormatter = staticLabelsFormatter
+
+        /// end graph config
+        /// top 10 product
+        val statisticActivity = bindings.contentStatistic
+        statisticBinding.statisticRecyclerView.apply {
+            layoutManager =
+                LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+            adapter = ProductAdapter(top10Products, this@MainActivity, top10Products, false)
+        }
+        productController.onGetTop10Products()
+
+        //// end top 10 product
 
         var toolbar = bindings.mainToolbar
         setSupportActionBar(toolbar)
@@ -102,28 +143,20 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
             true
         }
-        lineChartSetting(statisticBinding)
-        top10ProductSetting(statisticBinding)
     }
-    fun lineChartSetting(binding: ActivityStatisticBinding){
-        lineList = ArrayList()
-        lineList.add(Entry(1f, 200f))
-        lineList.add(Entry(2f, 300f))
-        lineList.add(Entry(3f, 400f))
-        lineList.add(Entry(4f, 500f))
-        lineList.add(Entry(5f, 600f))
-        lineList.add(Entry(6f, 700f))
 
-        lineDataSet = LineDataSet(lineList, "Line Chart")
-        lineData = LineData(lineDataSet)
-        binding.statisticLineChart!!.data = lineData
-        lineDataSet.color = Color.BLACK
-        lineDataSet.valueTextColor = Color.BLUE
-        lineDataSet.valueTextSize=20f
-        lineDataSet.setDrawFilled(true)
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onShowTop10Products(products: ArrayList<Product>) {
+        this.top10Products.clear()
+        this.top10Products.addAll(products)
+        Log.i("top10", top10Products.size.toString())
+        bindings.contentStatistic.statisticRecyclerView.adapter?.notifyDataSetChanged()
     }
-    fun top10ProductSetting(binding: ActivityStatisticBinding){
 
-
+    override fun onClick(product: Product) {
+        val intent = Intent(applicationContext, ProductDetailActivity::class.java)
+        intent.putExtra("item-id", product.id)
+        startActivity(intent)
     }
+
 }

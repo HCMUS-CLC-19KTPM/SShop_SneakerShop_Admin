@@ -196,6 +196,8 @@ class ProductDetailActivity : AppCompatActivity(), IProductView {
         TODO("Not yet implemented")
     }
 
+
+
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onShowProductDetail(product: Product) {
         this.currentProduct = Product(product)

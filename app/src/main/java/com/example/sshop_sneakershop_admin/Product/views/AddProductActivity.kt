@@ -153,6 +153,7 @@ class AddProductActivity : AppCompatActivity(), IProductView {
         TODO("Not yet implemented")
     }
 
+
     override fun onShowProductDetail(product: Product) {
         TODO("Not yet implemented")
     }
