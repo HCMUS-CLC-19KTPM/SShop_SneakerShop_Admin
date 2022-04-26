@@ -30,6 +30,7 @@ class ProductModel {
         }
         return products
     }
+
     suspend fun getTop10Products(): ArrayList<Product>{
         val products = ArrayList<Product>()
         try{
@@ -43,6 +44,7 @@ class ProductModel {
         }
         return products.slice(0..9) as ArrayList<Product>
     }
+
     suspend fun getProductById(id: String): Product{
         var product = Product()
         try{

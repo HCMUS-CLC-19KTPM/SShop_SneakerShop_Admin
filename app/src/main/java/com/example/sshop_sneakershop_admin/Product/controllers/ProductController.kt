@@ -33,7 +33,7 @@ class ProductController(
         CoroutineScope(Dispatchers.IO).launch {
             val products = productService.getTop10Products()
             withContext(Dispatchers.Main) {
-                iHomeView?.onShowTop10Products(products)
+                iHomeView?.onGetBestSellerSuccess(products)
             }
         }
     }

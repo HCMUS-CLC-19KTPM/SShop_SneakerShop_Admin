@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="500dp"
-                android:text="Top 10 products"
+                android:text="TOP 10 BEST SELLER"
                 android:textAllCaps="true"
                 android:textColor="@color/primary"
                 android:textSize="22sp"

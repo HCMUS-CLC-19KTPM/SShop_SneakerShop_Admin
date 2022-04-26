@@ -5,11 +5,14 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sshop_sneakershop_admin.Account.views.AccountListActivity
 import com.example.sshop_sneakershop_admin.Auth.views.SignInActivity
+import com.example.sshop_sneakershop_admin.Home.controllers.SoldProductController
+import com.example.sshop_sneakershop_admin.Home.models.Chart
 import com.example.sshop_sneakershop_admin.Order.views.OrderListActivity
 import com.example.sshop_sneakershop_admin.Product.controllers.ProductController
 import com.example.sshop_sneakershop_admin.Product.models.Product
@@ -19,6 +22,7 @@ import com.example.sshop_sneakershop_admin.Product.views.ProductDetailActivity
 import com.example.sshop_sneakershop_admin.Product.views.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
+import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.jjoe64.graphview.GridLabelRenderer
@@ -26,16 +30,23 @@ import com.jjoe64.graphview.LegendRenderer
 import com.jjoe64.graphview.helper.StaticLabelsFormatter
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
 
     private lateinit var bindings: ActivityMainBinding
     private val auth = Firebase.auth
-    private lateinit var productController: ProductController
-    private var top10Products = ArrayList<Product>()
+    private var bestSeller = ArrayList<Product>()
+    private lateinit var statisticBinding: ActivityStatisticBinding
 
-//    private lateinit var graph: GraphView
+    private lateinit var productController: ProductController
+    private lateinit var soldProductController: SoldProductController
+
+    //    private lateinit var graph: GraphView
     private var chartSeries: LineGraphSeries<DataPoint> = LineGraphSeries()
 
     override fun onStart() {
@@ -50,57 +61,34 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
+        productController = ProductController(iHomeView = this)
+        soldProductController = SoldProductController(this)
 
         bindings = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindings.root)
-        productController = ProductController(null, this)
 
-        val statisticBinding = bindings.contentStatistic
-        // graph config
-//        graph = statisticBinding.graph
-        for(x in 2..8){
-            var y = Math.sin(2 * x * 0.2)
-            chartSeries.appendData(DataPoint(x.toDouble(), y), true, 90)
-        }
-        // set manual X bounds
-        statisticBinding.graph.addSeries(chartSeries)
-        chartSeries.title = "Income"
-        chartSeries.thickness = 8
-        chartSeries.isDrawDataPoints = true
-        statisticBinding.graph.legendRenderer.isVisible = true
-        statisticBinding.graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP
-        val gridLable: GridLabelRenderer = statisticBinding.graph.gridLabelRenderer
-        gridLable.horizontalAxisTitle = "Day In Week"
-        gridLable.horizontalAxisTitleTextSize = 50F
-        // axis titles
-        val staticLabelsFormatter = StaticLabelsFormatter(statisticBinding.graph)
-        staticLabelsFormatter.setHorizontalLabels(arrayOf("2", "3", "4", "5", "6", "7", "8"))
+        statisticBinding = bindings.contentStatistic
 
-//        staticLabelsFormatter.setHorizontalLabels(arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
-//        staticLabelsFormatter.setVerticalLabels(arrayOf("low", "middle", "high"))
-        statisticBinding.graph.gridLabelRenderer.labelFormatter = staticLabelsFormatter
-
-        /// end graph config
         /// top 10 product
         val statisticActivity = bindings.contentStatistic
         statisticBinding.statisticRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-            adapter = ProductAdapter(top10Products, this@MainActivity, top10Products, false)
+            adapter = ProductAdapter(bestSeller, this@MainActivity, bestSeller, false)
         }
         productController.onGetTop10Products()
 
         //// end top 10 product
 
-        var toolbar = bindings.mainToolbar
+        val toolbar = bindings.mainToolbar
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Home"
 
 
-        var drawerLayout = bindings.drawerLayout
-        var navigationView = bindings.navigationView
+        val drawerLayout = bindings.drawerLayout
+        val navigationView = bindings.navigationView
 
-        var actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+        val actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
             R.string.openNavDrawer,
             R.string.closeNavDrawer
         )
@@ -143,14 +131,54 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
             drawerLayout.closeDrawers()
             true
         }
+
+        soldProductController.onGetStatistics()
+        soldProductController.onGetBestSeller()
+    }
+
+    override fun onGetStatisticsSuccess(soldProduct: ArrayList<Chart>) {
+        // graph config
+//        graph = statisticBinding.graph
+        for(item in soldProduct){
+            val zonedDateTime: ZonedDateTime = item.createdAt.atStartOfDay(ZoneId.systemDefault())
+            val x = Date.from(zonedDateTime.toInstant())
+            val y = item.total
+            chartSeries.appendData(DataPoint(x, y), true, 90)
+        }
+        // set manual X bounds
+        statisticBinding.graph.addSeries(chartSeries)
+        chartSeries.title = "Income"
+        chartSeries.thickness = 8
+        chartSeries.isDrawDataPoints = true
+        statisticBinding.graph.legendRenderer.isVisible = true
+        statisticBinding.graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP
+        val gridLabel: GridLabelRenderer = statisticBinding.graph.gridLabelRenderer
+        gridLabel.horizontalAxisTitle = "Day In Week"
+        gridLabel.horizontalAxisTitleTextSize = 50F
+        // axis titles
+        val staticLabelsFormatter = StaticLabelsFormatter(statisticBinding.graph)
+        staticLabelsFormatter.setHorizontalLabels(soldProduct.map { it.createdAt.toString() }.toTypedArray())
+
+//        staticLabelsFormatter.setHorizontalLabels(arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+//        staticLabelsFormatter.setVerticalLabels(arrayOf("low", "middle", "high"))
+        statisticBinding.graph.gridLabelRenderer.labelFormatter = staticLabelsFormatter
+
+        /// end graph config
+    }
+
+    override fun onGetStatisticsFailed(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun onShowTop10Products(products: ArrayList<Product>) {
-        this.top10Products.clear()
-        this.top10Products.addAll(products)
-        Log.i("top10", top10Products.size.toString())
+    override fun onGetBestSellerSuccess(bestSeller: ArrayList<Product>) {
+        this.bestSeller.clear()
+        this.bestSeller.addAll(bestSeller)
         bindings.contentStatistic.statisticRecyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onGetBestSellerFailed(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onClick(product: Product) {
@@ -158,5 +186,4 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
         intent.putExtra("item-id", product.id)
         startActivity(intent)
     }
-
 }
