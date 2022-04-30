@@ -3,6 +3,7 @@ package com.example.sshop_sneakershop_admin.Home.views
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -23,6 +24,13 @@ import com.example.sshop_sneakershop_admin.Product.views.ProductListAcitivity
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
 import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.jjoe64.graphview.GridLabelRenderer
@@ -49,6 +57,8 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
     //    private lateinit var graph: GraphView
     private var chartSeries: LineGraphSeries<DataPoint> = LineGraphSeries()
 
+//    private lateinit var pieChart: PieChart
+
     override fun onStart() {
         super.onStart()
 
@@ -61,6 +71,7 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
+//        pieChart = findViewById(R.id.pieChart)
         productController = ProductController(iHomeView = this)
         soldProductController = SoldProductController(this)
 
@@ -134,36 +145,43 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
 
         soldProductController.onGetStatistics()
         soldProductController.onGetBestSeller()
+
+        initPieChart()
+        setDataToPieChart()
+
     }
 
     override fun onGetStatisticsSuccess(soldProduct: ArrayList<Chart>) {
         // graph config
 //        graph = statisticBinding.graph
-        for(item in soldProduct){
-            val zonedDateTime: ZonedDateTime = item.createdAt.atStartOfDay(ZoneId.systemDefault())
-            val x = Date.from(zonedDateTime.toInstant())
-            val y = item.total
-            chartSeries.appendData(DataPoint(x, y), true, 90)
-        }
-        // set manual X bounds
-        statisticBinding.graph.addSeries(chartSeries)
-        chartSeries.title = "Income"
-        chartSeries.thickness = 8
-        chartSeries.isDrawDataPoints = true
-        statisticBinding.graph.legendRenderer.isVisible = true
-        statisticBinding.graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP
-        val gridLabel: GridLabelRenderer = statisticBinding.graph.gridLabelRenderer
-        gridLabel.horizontalAxisTitle = "Day In Week"
-        gridLabel.horizontalAxisTitleTextSize = 50F
+//        for(item in soldProduct){
+//            val zonedDateTime: ZonedDateTime = item.createdAt.atStartOfDay(ZoneId.systemDefault())
+//            val x = Date.from(zonedDateTime.toInstant())
+//            val y = item.total
+//            chartSeries.appendData(DataPoint(x, y), true, 90)
+//        }
+//        // set manual X bounds
+////        statisticBinding.graph.addSeries(chartSeries)
+//        chartSeries.title = "Income"
+//        chartSeries.thickness = 8
+//        chartSeries.isDrawDataPoints = true
+//        statisticBinding.graph.legendRenderer.isVisible = true
+//        statisticBinding.graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP
+//        val gridLabel: GridLabelRenderer = statisticBinding.graph.gridLabelRenderer
+//        gridLabel.horizontalAxisTitle = "Day In Week"
+//        gridLabel.horizontalAxisTitleTextSize = 50F
         // axis titles
-        val staticLabelsFormatter = StaticLabelsFormatter(statisticBinding.graph)
-        staticLabelsFormatter.setHorizontalLabels(soldProduct.map { it.createdAt.toString() }.toTypedArray())
+//        val staticLabelsFormatter = StaticLabelsFormatter(statisticBinding.graph)
+//        staticLabelsFormatter.setHorizontalLabels(soldProduct.map { it.createdAt.toString() }.toTypedArray())
 
 //        staticLabelsFormatter.setHorizontalLabels(arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
 //        staticLabelsFormatter.setVerticalLabels(arrayOf("low", "middle", "high"))
-        statisticBinding.graph.gridLabelRenderer.labelFormatter = staticLabelsFormatter
+//        statisticBinding.graph.gridLabelRenderer.labelFormatter = staticLabelsFormatter
 
-        /// end graph config
+        /// end graph
+
+//        initPieChart()
+//        setDataToPieChart()
     }
 
     override fun onGetStatisticsFailed(message: String) {
@@ -185,5 +203,61 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
         val intent = Intent(applicationContext, ProductDetailActivity::class.java)
         intent.putExtra("item-id", product.id)
         startActivity(intent)
+    }
+
+    private fun initPieChart() {
+        statisticBinding.pieChart.setUsePercentValues(true)
+        statisticBinding.pieChart.description.text = ""
+        //hollow pie chart
+        statisticBinding.pieChart.isDrawHoleEnabled = false
+        statisticBinding.pieChart.setTouchEnabled(false)
+        statisticBinding.pieChart.setDrawEntryLabels(false)
+        //adding padding
+        statisticBinding.pieChart.setExtraOffsets(20f, 0f, 20f, 20f)
+        statisticBinding.pieChart.setUsePercentValues(true)
+        statisticBinding.pieChart.isRotationEnabled = false
+        statisticBinding.pieChart.setDrawEntryLabels(false)
+        statisticBinding.pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
+        statisticBinding.pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        statisticBinding.pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        statisticBinding.pieChart.legend.isWordWrapEnabled = true
+
+    }
+
+    private fun setDataToPieChart() {
+        statisticBinding.pieChart.setUsePercentValues(true)
+        val dataEntries = ArrayList<PieEntry>()
+        dataEntries.add(PieEntry(72f, "Android"))
+        dataEntries.add(PieEntry(26f, "Ios"))
+        dataEntries.add(PieEntry(2f, "Other"))
+
+        val colors: ArrayList<Int> = ArrayList()
+        colors.add(Color.parseColor("#4DD0E1"))
+        colors.add(Color.parseColor("#FFF176"))
+        colors.add(Color.parseColor("#FF8A65"))
+
+        val dataSet = PieDataSet(dataEntries, "")
+        val data = PieData(dataSet)
+
+        // In Percentage
+        data.setValueFormatter(PercentFormatter())
+        dataSet.sliceSpace = 3f
+        dataSet.colors = colors
+        statisticBinding.pieChart.data = data
+        data.setValueTextSize(15f)
+        statisticBinding.pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+        statisticBinding.pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+        //create hole in center
+        statisticBinding.pieChart.holeRadius = 58f
+        statisticBinding.pieChart.transparentCircleRadius = 61f
+        statisticBinding.pieChart.isDrawHoleEnabled = true
+        statisticBinding.pieChart.setHoleColor(Color.WHITE)
+
+        //add text in center
+        statisticBinding.pieChart.setDrawCenterText(true)
+        statisticBinding.pieChart.centerText = "Mobile OS Market share"
+
+        statisticBinding.pieChart.invalidate()
     }
 }
