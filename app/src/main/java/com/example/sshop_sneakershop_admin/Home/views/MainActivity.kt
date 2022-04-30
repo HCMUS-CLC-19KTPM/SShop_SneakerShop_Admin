@@ -133,14 +133,25 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
         statisticBinding.pieChart.setUsePercentValues(true)
         val dataEntries = ArrayList<PieEntry>()
 
+        var totalSoldProduct = 0
         for (i in 0 until soldProduct.size) {
-            dataEntries.add(PieEntry(soldProduct[i].quantity.toFloat(), soldProduct[i].brand))
+            totalSoldProduct += soldProduct[i].quantity
+        }
+
+        for (i in 0 until soldProduct.size) {
+            dataEntries.add(
+                PieEntry(
+                    (soldProduct[i].quantity.toFloat() / totalSoldProduct) * 100,
+                    soldProduct[i].brand
+                )
+            )
         }
 
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(Color.parseColor("#4DD0E1"))
-        colors.add(Color.parseColor("#FFF176"))
-        colors.add(Color.parseColor("#FF8A65"))
+        colors.add(Color.parseColor("#FF0000"))
+        colors.add(Color.parseColor("#007ED6"))
+        colors.add(Color.parseColor("#7CDDDD"))
+        colors.add(Color.parseColor("#FFBF00"))
 
         val dataSet = PieDataSet(dataEntries, "")
         val data = PieData(dataSet)
@@ -163,6 +174,7 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
         //add text in center
         statisticBinding.pieChart.setDrawCenterText(true)
         statisticBinding.pieChart.centerText = "Top 3 Brand"
+        statisticBinding.pieChart.setCenterTextSizePixels(60f)
 
         statisticBinding.pieChart.invalidate()
     }
@@ -201,46 +213,10 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
         statisticBinding.pieChart.isRotationEnabled = false
         statisticBinding.pieChart.setDrawEntryLabels(false)
         statisticBinding.pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
-        statisticBinding.pieChart.legend.horizontalAlignment =
-            Legend.LegendHorizontalAlignment.RIGHT
+        statisticBinding.pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         statisticBinding.pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        statisticBinding.pieChart.legend.textSize = 16f
         statisticBinding.pieChart.legend.isWordWrapEnabled = true
     }
 
-    private fun setDataToPieChart() {
-        statisticBinding.pieChart.setUsePercentValues(true)
-        val dataEntries = ArrayList<PieEntry>()
-        dataEntries.add(PieEntry(72f, "Android"))
-        dataEntries.add(PieEntry(26f, "Ios"))
-        dataEntries.add(PieEntry(2f, "Other"))
-
-        val colors: ArrayList<Int> = ArrayList()
-        colors.add(Color.parseColor("#4DD0E1"))
-        colors.add(Color.parseColor("#FFF176"))
-        colors.add(Color.parseColor("#FF8A65"))
-
-        val dataSet = PieDataSet(dataEntries, "")
-        val data = PieData(dataSet)
-
-        // In Percentage
-        data.setValueFormatter(PercentFormatter())
-        dataSet.sliceSpace = 3f
-        dataSet.colors = colors
-        statisticBinding.pieChart.data = data
-        data.setValueTextSize(15f)
-        statisticBinding.pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
-        statisticBinding.pieChart.animateY(1400, Easing.EaseInOutQuad)
-
-        //create hole in center
-        statisticBinding.pieChart.holeRadius = 58f
-        statisticBinding.pieChart.transparentCircleRadius = 61f
-        statisticBinding.pieChart.isDrawHoleEnabled = true
-        statisticBinding.pieChart.setHoleColor(Color.WHITE)
-
-        //add text in center
-        statisticBinding.pieChart.setDrawCenterText(true)
-        statisticBinding.pieChart.centerText = "Mobile OS Market share"
-
-        statisticBinding.pieChart.invalidate()
-    }
 }
