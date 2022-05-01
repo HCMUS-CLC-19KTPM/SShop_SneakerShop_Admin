@@ -2,6 +2,7 @@ package com.example.sshop_sneakershop_admin.Order.models
 
 import android.util.Log
 import com.example.sshop_sneakershop_admin.Product.models.Product
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -12,7 +13,10 @@ class OrderModel {
     suspend fun getAllOrders(): ArrayList<Order> {
         val orders = ArrayList<Order>()
         try {
-            db.collection("order").get().await()
+            db.collection("order")
+                .orderBy("startDate", Query.Direction.DESCENDING)
+                .get()
+                .await()
                 .documents.forEach {
                     val order = it.toObject(Order::class.java)
                     orders.add(order!!)
@@ -41,7 +45,7 @@ class OrderModel {
                         product = it!!
                         val quantity = order.cart.find { it.id == product.id }!!.quantity
                         val price = order.cart.find { it.id == item.id }!!.price
-                        Log.i("cart-value", "${quantity} - ${price}")
+                        Log.i("cart-value", "$quantity - $price")
                         product.quantity = order.cart.find { it.id == item.id }!!.quantity
                         product.price = order.cart.find { it.id == item.id }!!.price
                         products.add(product)

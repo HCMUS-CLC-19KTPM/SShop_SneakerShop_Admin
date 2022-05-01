@@ -14,7 +14,7 @@ class SoldProductModel {
         val soldProducts = ArrayList<ChartEntry>()
         val map = HashMap<String, Int>()
         try {
-            db.collection("sold_product").orderBy("createdAt", Query.Direction.ASCENDING)
+            db.collection("sold_product").orderBy("quantity", Query.Direction.DESCENDING)
                 .get()
                 .await()
                 .documents.forEach {
@@ -24,11 +24,14 @@ class SoldProductModel {
 
                         if (map.containsKey(brand)) {
                             map[brand] = map[brand]!! + product.quantity
-                        } else {
+                        } else if (map.containsKey("Others")) {
+                            map["Others"] = map["Others"]!! + product.quantity
+                        }
+                        else {
                             if (map.size < 3) {
                                 map[brand] = product.quantity
                             } else {
-                                map["Others"] = map["Others"]!! + product.quantity
+                                map["Others"] = product.quantity
                             }
                         }
                     }
@@ -43,6 +46,7 @@ class SoldProductModel {
             throw e
         }
 
+        soldProducts.sortByDescending { it.quantity }
         return soldProducts
     }
 

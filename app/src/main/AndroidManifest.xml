@@ -37,7 +37,7 @@
             android:name=".Product.views.ProductDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Product.views.ProductListAcitivity"
+            android:name=".Product.views.ProductListActivity"
             android:exported="true" />
         <activity
             android:name=".Account.views.AccountDetailActivity"

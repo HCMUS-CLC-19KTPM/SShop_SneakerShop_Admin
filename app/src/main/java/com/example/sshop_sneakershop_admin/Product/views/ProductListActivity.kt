@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ProductListAcitivity : AppCompatActivity(),
+class ProductListActivity : AppCompatActivity(),
     IProductView, ItemClickListener{
     private var products: ArrayList<Product> = ArrayList()
     private lateinit var binding: ActivityProductListBinding

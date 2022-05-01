@@ -21,7 +21,7 @@ import com.example.sshop_sneakershop_admin.Product.models.Product
 import com.example.sshop_sneakershop_admin.Product.views.ItemClickListener
 import com.example.sshop_sneakershop_admin.Product.views.ProductAdapter
 import com.example.sshop_sneakershop_admin.Product.views.ProductDetailActivity
-import com.example.sshop_sneakershop_admin.Product.views.ProductListAcitivity
+import com.example.sshop_sneakershop_admin.Product.views.ProductListActivity
 import com.example.sshop_sneakershop_admin.R
 import com.example.sshop_sneakershop_admin.databinding.ActivityMainBinding
 import com.example.sshop_sneakershop_admin.databinding.ActivityStatisticBinding
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
                     startActivity(intent)
                 }
                 R.id.nav_product -> {
-                    val intent = Intent(this, ProductListAcitivity::class.java)
+                    val intent = Intent(this, ProductListActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.nav_order -> {
