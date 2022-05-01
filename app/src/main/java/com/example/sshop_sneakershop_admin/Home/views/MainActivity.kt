@@ -215,7 +215,7 @@ class MainActivity : AppCompatActivity(), IHomeView, ItemClickListener {
         statisticBinding.pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
         statisticBinding.pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         statisticBinding.pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-        statisticBinding.pieChart.legend.textSize = 16f
+        statisticBinding.pieChart.legend.textSize = 14f
         statisticBinding.pieChart.legend.isWordWrapEnabled = true
     }
 
