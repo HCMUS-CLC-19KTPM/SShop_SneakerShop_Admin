@@ -13,14 +13,8 @@
             android:name=".Account.views.EditAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".Statistic.views.StatisticActivity"
-            android:exported="false" />
-        <activity
             android:name=".Auth.views.ForgotPasswordActivity"
             android:exported="false" />
-        <activity
-            android:name=".Statistic.StatisticActivity"
-            android:exported="true" />
         <activity
             android:name=".Auth.views.SignInActivity"
             android:exported="true" />
